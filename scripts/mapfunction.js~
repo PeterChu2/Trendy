@@ -54,10 +54,16 @@ function initialize() {
 }
 
 function postServer(value){
-	jQuery.post("http://127.0.0.1:5000/nearby", {lat: pos.k, long: pos.D, value: value}, function(data){
-        alert(data)
-    })
+	jQuery.post("http://127.0.0.1:5000/nearby", {lat: pos.k, long: pos.D, value: value}, console.log("post sent"))
 }
+//document.getElementById('enter').onkeydown = function(event) {
+//    if (event.keyCode == 13) {
+//        alert('5');
+//        //jQuery.post("http://127.0.0.1:5000/nearby", {lat: e.latLng.k, long: e.latLng.D}, function(data){
+//        //    console.log(data)
+//        //})
+//    }
+//}
 
 function handleNoGeolocation(errorFlag) {
     if (errorFlag) {
