@@ -35,7 +35,7 @@ function initialize() {
                 });
                 map.panTo(e.latLng);
 
-                jQuery.post("http://127.0.0.1:8080/proxy/", {position: e.latLng.toString()}, window.open("https://www.google.ca"))
+                jQuery.post("http://127.0.0.1:5000/nearby", {lat: e.latLng.k, long: e.latLng.D}, console.log("post sent")) 
             });
 
             map.setCenter(pos);
