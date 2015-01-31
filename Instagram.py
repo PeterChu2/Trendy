@@ -1,5 +1,7 @@
 from instagram.client import InstagramAPI
 from flask import Flask, request, jsonify
+from util import Util
+import twitter
 
 app = Flask(__name__)
 
@@ -28,7 +30,7 @@ def createJSON( media_search ):
     if ( hasattr(media, 'images') & ("standard_resolution" in media.images) ):
       items[i]["image_url"] = media.images['standard_resolution'].url
       if hasattr(media.caption, 'text'):
-        items[i]["text"] = media.caption.text
+        items[i]["text"] = Util.remove_non_ascii(media.caption.text)
         # GET RID OF UNICODE CHARS HERE
         words = (items[i]["text"]).split(" ")
         for word in words:
