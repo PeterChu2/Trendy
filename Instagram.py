@@ -7,12 +7,16 @@ api = InstagramAPI(client_id='5d9cdd5e12dd4ed7862ff7d0b9867bd7', client_secret='
 
 @app.route('/nearby', methods=['POST'])
 def nearby():
+  items = []
   try:
-    media_search = api.media_search( count=100, lat=request.form['lat'], lng=request.form['long'], distance=10000 )
+    media_search = api.media_search( count=10, lat=request.form['lat'], lng=request.form['long'], distance=10 )
     if(media_search):
       for media in media_search:
         if hasattr(media.caption, 'text'):
-          return media.caption.text + "\n"
+          items.append( media.caption.text + "\n" )
+          print media.caption.text
+      return "\n".join(items)
+
   except UnicodeEncodeError:
     pass #NOOP
 
