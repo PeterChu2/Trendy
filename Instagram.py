@@ -12,7 +12,6 @@ def nearby():
   try:
     media_search = api.media_search( count=10, lat=request.form['lat'], lng=request.form['long'], distance=10 )
     if(media_search):
-      i=0
       items = createJSON(media_search)
       # print items
       return jsonify(items)
@@ -21,6 +20,7 @@ def nearby():
     pass #NOOP
 
 def createJSON( media_search ):
+  i=0
   hashTags = []
   items = {}
   for media in media_search:
