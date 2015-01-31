@@ -37,7 +37,7 @@ def search_tweets(lat, lng, dist):
         new_tweet = Util.remove_non_ascii(tweet.text)
         if len(new_tweet) > 0:
             hashtags = Util.extract_hashtags(new_tweet)
-            image_urls = Util.extract_hashtags(new_tweet)
+            image_urls = Util.extract_image_urls(new_tweet)
             text = Util.extract_text(new_tweet)
 
             tweet_object = Item(text, image_urls, hashtags)
