@@ -1,5 +1,7 @@
 from instagram.client import InstagramAPI
 from flask import Flask, request
+import json
+
 app = Flask(__name__)
 
 access_token = "YOUR_ACCESS_TOKEN"
@@ -25,6 +27,15 @@ def returnHashTags( input ):
   for s in strings:
     if("#" in s):
       return s
+
+def relevantItems( input ):
+  relevantItems = []
+  strings = input.split(' ')
+  for s in strings:
+    if("#" in s):
+      relevantItems.append(s)
+
+
 
 if __name__ == '__main__':
     app.run()
