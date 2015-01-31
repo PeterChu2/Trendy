@@ -2,6 +2,7 @@ import string
 import operator
 
 non_content = '''!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'''
+
 class Util:
     
     @staticmethod
@@ -30,3 +31,24 @@ class Util:
     def sort_dict_by_values(d):
         return sorted(d.items(), key=operator.itemgetter(1), reverse=True)
 
+    
+    @staticmethod
+    def extract_image_urls(text):
+        items = text.split()
+        urls = []
+
+        for item in items:
+            if item.startswith("http"):
+                urls.append(item)
+
+        return urls
+
+    @staticmethod
+    def extract_text(text):
+        items = text.split()
+        texts = []
+
+        for item in items:
+            if not item.startswith("http"):
+                texts.append(item)
+        return " ".join(texts)
