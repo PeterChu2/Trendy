@@ -29,27 +29,14 @@ def createJSON( media_search ):
       items[i]["image_url"] = media.images['standard_resolution'].url
       if hasattr(media.caption, 'text'):
         items[i]["text"] = media.caption.text
+        # GET RID OF UNICODE CHARS HERE
+        words = (items[i]["text"]).split(" ")
+        for word in words:
+          if( "#" in word ):
+            hashTags.append(word)
       i=i+1
-
+  items["hash_tags"] = hashTags
   return items
-
-
-def returnHashTags( input ):
-
-  strings = input.split(' ')
-  for s in strings:
-    if("#" in s):
-      hashTags.append(s)
-  return hashTags
-
-def relevantItems( input ):
-  relevantItems = []
-  strings = input.split(' ')
-  for s in strings:
-    if("#" in s):
-      relevantItems.append(s)
-
-
 
 if __name__ == '__main__':
     app.run()
