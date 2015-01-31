@@ -1,6 +1,5 @@
 from instagram.client import InstagramAPI
-from flask import Flask, request
-import json
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -9,24 +8,39 @@ api = InstagramAPI(client_id='5d9cdd5e12dd4ed7862ff7d0b9867bd7', client_secret='
 
 @app.route('/nearby', methods=['POST'])
 def nearby():
-  items = []
+
   try:
     media_search = api.media_search( count=10, lat=request.form['lat'], lng=request.form['long'], distance=10 )
     if(media_search):
-      for media in media_search:
-        if hasattr(media.caption, 'text'):
-          items.append( media.caption.text + "\n" )
-          print media.caption.text
-      return "\n".join(items)
+      i=0
+      items = createJSON(media_search)
+      # print items
+      return jsonify(items)
 
   except UnicodeEncodeError:
     pass #NOOP
 
+def createJSON( media_search ):
+  hashTags = []
+  items = {}
+  for media in media_search:
+    items[i] = {}
+    if ( hasattr(media, 'images') & ("standard_resolution" in media.images) ):
+      items[i]["image_url"] = media.images['standard_resolution'].url
+      if hasattr(media.caption, 'text'):
+        items[i]["text"] = media.caption.text
+      i=i+1
+
+  return items
+
+
 def returnHashTags( input ):
+
   strings = input.split(' ')
   for s in strings:
     if("#" in s):
-      return s
+      hashTags.append(s)
+  return hashTags
 
 def relevantItems( input ):
   relevantItems = []
