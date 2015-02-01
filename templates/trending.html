@@ -64,10 +64,10 @@
 			if(tweetLength > 0){
 				for(var i=0; i<tweetLength; i++){
 					var element = data["tweet"][""+i];
-					tweetText+="<p>"+element.text+"</p><b>"+element.hash_tags+"</b>"				
-				}
+					tweetText+="<p>"+element.text+"</p><b>"+element.hash_tags+ " sentiment:  " +element.sentiment+"</b>"			
+							    
+							    }
 				if(tweetText!=""){$("#twitter").append(tweetText).removeClass("invisible");}
-							    console.log(tweetText);
 			}
 			
 			var instaLength = data.instagram.num;

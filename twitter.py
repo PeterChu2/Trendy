@@ -1,11 +1,18 @@
 import tweepy
 from util import Util
+import urllib2
+import unirest
 
 CONSUMER_KEY = "mvwhsiYQe3UTnnNv888GSXmIy"
 CONSUMER_SECRET = "SfQ6j2bEOURZmzE5fd5oZYs02udxg2RpgAmj3BhF5pFjUyPl9W"
 ACCESS_TOKEN = "2739941347-JFMFrA13BA5w3WQFmKLxm79oGt5IMuGY4BCfEBC"
 ACCESS_SECRET = "BOWclPeXkxqy98DUFu1M1pg4RdgXOWUpfvsMS32Ezu66t"
 TOP_K = 1000
+QUERY = "https://loudelement-free-natural-language-processing-service.p.mashape.com/nlp-text/?text="
+HEADERS = {
+    "X-Mashape-Key": "WOe6Znx5UpmshoVnevTHgeoYSUfDp1JaNjajsn6CJob9bRSHJd",
+    "Accept": "application/json"
+    }
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 
@@ -14,16 +21,18 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
 api = tweepy.API(auth)
 
 class Item:
-    def __init__(self, text, imgs, tags):
+    def __init__(self, text, imgs, tags, sentiment="neutral"):
         self.text = text
         self.imgs = imgs
         self.tags = tags
+        self.sentiment = sentiment
 
     def serialize(self):
         return {
             "text": self.text,
             "image_url": self.imgs,
-            "hash_tags": self.tags
+            "hash_tags": self.tags,
+            "sentiment": self.sentiment,
             }
 
 def search_tweets(lat, lng, dist):
@@ -42,7 +51,6 @@ def search_tweets(lat, lng, dist):
 
 
             text = Util.extract_text(new_tweet)
-
             tweet_object = Item(text, image_urls, hashtags)
 
             for tag in hashtags:
@@ -57,6 +65,10 @@ def search_tweets(lat, lng, dist):
 
     for i in range(min(TOP_K, len(sorted_tags))):
         for tweet in tag_to_tweets[sorted_tags[len(sorted_tags) -1-i][0]]:
+            response = unirest.get(QUERY + urllib2.quote(tweet.text, ""), 
+                                   headers=HEADERS)
+            sentiment = response.body["sentiment-text"]
+            tweet.sentiment = sentiment
             all_tweets.append(tweet)
 
             
