@@ -39,13 +39,14 @@
 	<script>
 	(function(){
 		var data = sessionStorage.getItem("data");
-		console.log(data["instagram"]["0"]["text"]);
+		console.log($.parseJSON(data));
+	        console.log(data);
 		if(data){
-			var tweetLength = data.tweet.length;
+			var tweetLength = data["tweet"].length;
 			var tweetText = "";
 			if(tweetLength > 0){
 				for(var i=0; i<tweetLength; i++){
-					var element = data.tweet[""+i];
+					var element = data["tweet"][""+i];
 					tweetText+="<img src="
 					if(element.image_url){
 						tweetText+=element.image_url;
@@ -75,7 +76,7 @@
 				if(instaText!=""){$("#instagram").append(instaText);}			
 			}
 		}	
-	});
+	})();
 	</script>
 	</head>
 	<body>
