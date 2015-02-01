@@ -20,12 +20,12 @@
 		body { height: 100%; margin: 0; padding: 0 }
 		#map-canvas { height: 100% }
 		.social_networking1{
-		width: 60%; 
+		width: 65%; 
 		border: 1px solid black; 
 		float: left
 		}
 		.social_networking2{
-		width: 40%; 
+		width: 35%; 
 		border: 1px solid black; 
 		float: left
 		}
@@ -64,7 +64,7 @@
 			if(tweetLength > 0){
 				for(var i=0; i<tweetLength; i++){
 					var element = data["tweet"][""+i];
-					tweetText+="<p>"+element.text+"</p><b>"+element.hash_tags+ " sentiment:  " +element.sentiment+"</b>"			
+					tweetText+="<p><font color=\""+element.color+"\">"+element.text+"</font></p><b>"+element.hash_tags+ " sentiment:  " +element.sentiment+"</b>"			
 							    
 							    }
 				if(tweetText!=""){$("#twitter").append(tweetText).removeClass("invisible");}

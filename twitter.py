@@ -7,7 +7,7 @@ CONSUMER_KEY = "mvwhsiYQe3UTnnNv888GSXmIy"
 CONSUMER_SECRET = "SfQ6j2bEOURZmzE5fd5oZYs02udxg2RpgAmj3BhF5pFjUyPl9W"
 ACCESS_TOKEN = "2739941347-JFMFrA13BA5w3WQFmKLxm79oGt5IMuGY4BCfEBC"
 ACCESS_SECRET = "BOWclPeXkxqy98DUFu1M1pg4RdgXOWUpfvsMS32Ezu66t"
-TOP_K = 1000
+TOP_K = 50
 QUERY = "https://loudelement-free-natural-language-processing-service.p.mashape.com/nlp-text/?text="
 HEADERS = {
     "X-Mashape-Key": "WOe6Znx5UpmshoVnevTHgeoYSUfDp1JaNjajsn6CJob9bRSHJd",
@@ -26,6 +26,7 @@ class Item:
         self.imgs = imgs
         self.tags = tags
         self.sentiment = sentiment
+        self.color = "black"
 
     def serialize(self):
         return {
@@ -33,6 +34,7 @@ class Item:
             "image_url": self.imgs,
             "hash_tags": self.tags,
             "sentiment": self.sentiment,
+            "color": self.color,
             }
 
 def search_tweets(lat, lng, dist):
@@ -69,6 +71,11 @@ def search_tweets(lat, lng, dist):
                                    headers=HEADERS)
             sentiment = response.body["sentiment-text"]
             tweet.sentiment = sentiment
+
+            if sentiment == "positive":
+                tweet.color = "red"
+            elif sentiment == "negative":
+                tweet.color = "blue"
             all_tweets.append(tweet)
 
             
