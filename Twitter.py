@@ -37,6 +37,11 @@ class Item:
             "color": self.color,
             }
 
+def grab_twitter(request):
+  #request.form['dist'] is the distance in km.
+  all_posts = Twitter.search_tweets(request.form['lat'], request.form['long'], request.form['value'])
+  return all_posts
+
 def search_tweets(lat, lng, dist):
     gcode = str(lat) + "," + str(lng) + "," + str(dist) + "km"
     public_tweets = api.search(geocode=gcode, count=100)
@@ -78,16 +83,11 @@ def search_tweets(lat, lng, dist):
                 tweet.color = "blue"
             all_tweets.append(tweet)
 
-            
-
     return all_tweets
 
+
 if __name__ == "__main__":
+    lat = 43.665459
+    lng = -79.409498
     dist = 0.1
-    lat, lng = 43.659465, -79.397044
-    all_tweets = search_tweets(lat, lng, dist)
-    
-    for tweet in all_tweets:
-        print tweet.text
-        print tweet.tags
-        print
+    search_tweets(lat, lng, dist)
