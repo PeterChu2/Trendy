@@ -33,13 +33,11 @@ class Util:
 
     
     @staticmethod
-    def extract_image_urls(text):
-        items = text.split()
+    def extract_image_urls(short_urls):
         urls = []
 
-        for item in items:
-            if item.startswith("http"):
-                urls.append(item)
+        for u in short_urls:
+            urls.append(u["expanded_url"])
 
         return urls
 

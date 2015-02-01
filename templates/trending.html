@@ -19,8 +19,13 @@
 		html { height: 100% }
 		body { height: 100%; margin: 0; padding: 0 }
 		#map-canvas { height: 100% }
-		.social_networking{
-		width: 50%; 
+		.social_networking1{
+		width: 60%; 
+		border: 1px solid black; 
+		float: left
+		}
+		.social_networking2{
+		width: 40%; 
 		border: 1px solid black; 
 		float: left
 		}
@@ -28,8 +33,8 @@
 		display:none		
 		}
 		img {
-		height:50px;
-		width:50px		
+		height:100%;
+		width:100%		
 		}
 	</style>
 
@@ -43,18 +48,10 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 																																				<![endif]-->
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<div class = "invisible" class = "social_networking" id="twitter">
-		<img src="url"/>
-		<p>text</p>
-		<b>hash</b>
-		<p></p>
+	<div class = "social_networking1" id="twitter">
 	</div>
 
-	<div class = "invisible" class = "social_networking" id="instagram">
-		<img src="url"/>
-		<p>text</p>
-		<b>hash</b>
-		<p></p>
+	<div class = "social_networking2" id="instagram">
 	</div>	
 
 	<script>
@@ -67,14 +64,7 @@
 			if(tweetLength > 0){
 				for(var i=0; i<tweetLength; i++){
 					var element = data["tweet"][""+i];
- 					tweetText+="<img src="
-					if(element.image_url){
-						tweetText+="\""+element.image_url+"\"";
-					}					
-					else{
-						tweetText+="#";
-					}
-					tweetText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b><p></p>"				
+					tweetText+="<p>"+element.text+"</p><b>"+element.hash_tags+"</b>"				
 				}
 				if(tweetText!=""){$("#twitter").append(tweetText).removeClass("invisible");}
 							    console.log(tweetText);

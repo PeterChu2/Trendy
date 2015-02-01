@@ -21,7 +21,7 @@ function initialize() {
             var infowindow = new google.maps.InfoWindow({
                     map: map,
                     position: pos,
-                    content: '<input type="number" value="5" min="1" onkeypress="if(event.keyCode==13) postServer(value);">'
+                    content: '<input type="number" value="0.5" min="0.1" onkeypress="if(event.keyCode==13) postServer(value);">'
                 });
                 infowindow.open(map, marker);
 
@@ -37,7 +37,7 @@ function initialize() {
                 infowindow = new google.maps.InfoWindow({
                     map: map,
                     position: pos,
-                    content: '<input type="number" value="5" min="1" onkeypress="if(event.keyCode==13) postServer(value);">'
+                    content: '<input type="number" value="0.5" min="0.1" onkeypress="if(event.keyCode==13) postServer(value);">'
                 });
                 infowindow.open(map, marker);
             });
@@ -55,7 +55,7 @@ function initialize() {
 
 function postServer(value){
 	jQuery.post("http://127.0.0.1:5000/nearby", {lat: pos.k, long: pos.D, value: value}, function(data){
-            sessonStorage.set("data", data);
+            sessionStorage.set("data", data);
 	    window.open("/nearby/trending");
 	})
 }
