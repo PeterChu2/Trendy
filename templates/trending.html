@@ -20,8 +20,9 @@
 		body { height: 100%; margin: 0; padding: 0 }
 		#map-canvas { height: 100% }
 		.social_networking{
-		display: inline-black;
-		width: 50%;
+		width: 50%; 
+		border: 1px solid black; 
+		float: left
 		}
 	</style>
 
@@ -40,14 +41,21 @@
 		var data = sessionStorage.getItem("data");
 		console.log(data["instagram"]["0"]["text"]);
 		if(data){
-			var twitLength = data.tweet.length;
-			var twitText = "";
-			if(twitLength > 0){
-				for(var i=0; i<twitLength; i++){
+			var tweetLength = data.tweet.length;
+			var tweetText = "";
+			if(tweetLength > 0){
+				for(var i=0; i<tweetLength; i++){
 					var element = data.tweet[""+i];
-					twitterText+="<img src="+element.image_url+"/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"				
+					tweetText+="<img src="
+					if(element.image_url){
+						tweetText+=element.image_url;
+					}					
+					else{
+						tweetText+="#";
+					}
+					tweetText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"				
 				}
-				if(twitText!=""){$("#twitter").append(twitText);}			
+				if(tweetText!=""){$("#twitter").append(tweetText);}			
 			}
 			
 			var instaLength = data.instagram.length;
@@ -55,7 +63,14 @@
 			if(instaLength > 0){
 				for(var i=0; i<instaLength; i++){
 					var element = data.instagram[""+i];
-					instaText+="<img src="+element.image_url+"/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"				
+					instaText+="<img src="
+					if(element.image_url){
+						instaText+=element.image_url;
+					}					
+					else{
+						instaText+="#";
+					}
+					instaText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"
 				}
 				if(instaText!=""){$("#instagram").append(instaText);}			
 			}
@@ -64,15 +79,6 @@
 	</script>
 	</head>
 	<body>
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-	<div class="navbar-header">
-	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	<span class="sr-only">Toggle navigation</span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-	</button>
 	
 	<div class = "social_networking" id="twitter">
 		<img src="url"/>
