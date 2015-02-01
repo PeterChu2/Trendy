@@ -38,16 +38,16 @@
 	<script>
 	(function(){
 		var data = sessionStorage.getItem("data");
-		
+		console.log(data["instagram"]["0"]["text"]);
 		if(data){
-			var twitLength = data.twitter.length;
+			var twitLength = data.tweet.length;
 			var twitText = "";
 			if(twitLength > 0){
 				for(var i=0; i<twitLength; i++){
-					var element = data.twitter[""+i];
-					twitterText+="<img src="+element.image_url+"/><p>"+element.text+"</p><b>"+element.hash_tags+</b>				
+					var element = data.tweet[""+i];
+					twitterText+="<img src="+element.image_url+"/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"				
 				}
-				if(twitText!=""){$(#twitter).append(twitText)}			
+				if(twitText!=""){$("#twitter").append(twitText);}			
 			}
 			
 			var instaLength = data.instagram.length;
@@ -55,9 +55,9 @@
 			if(instaLength > 0){
 				for(var i=0; i<instaLength; i++){
 					var element = data.instagram[""+i];
-					instaText+="<img src="+element.image_url+"/><p>"+element.text+"</p><b>"+element.hash_tags+</b>				
+					instaText+="<img src="+element.image_url+"/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"				
 				}
-				if(instaText!=""){$(#instagram).append(instaText)}			
+				if(instaText!=""){$("#instagram").append(instaText);}			
 			}
 		}	
 	});
