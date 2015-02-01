@@ -36,51 +36,6 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 																																				<![endif]-->
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<script>
-	(function(){
-		var data = sessionStorage.getItem("data");
-		console.log($.parseJSON(data));
-	        console.log(data);
-		if(data){
-			var tweetLength = data["tweet"].length;
-			var tweetText = "";
-			if(tweetLength > 0){
-				for(var i=0; i<tweetLength; i++){
-					var element = data["tweet"][""+i];
-					tweetText+="<img src="
-					if(element.image_url){
-						tweetText+=element.image_url;
-					}					
-					else{
-						tweetText+="#";
-					}
-					tweetText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"				
-				}
-				if(tweetText!=""){$("#twitter").append(tweetText);}			
-			}
-			
-			var instaLength = data.instagram.length;
-			var instaText = "";
-			if(instaLength > 0){
-				for(var i=0; i<instaLength; i++){
-					var element = data.instagram[""+i];
-					instaText+="<img src="
-					if(element.image_url){
-						instaText+=element.image_url;
-					}					
-					else{
-						instaText+="#";
-					}
-					instaText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"
-				}
-				if(instaText!=""){$("#instagram").append(instaText);}			
-			}
-		}	
-	})();
-	</script>
-	</head>
-	<body>
-	
 	<div class = "social_networking" id="twitter">
 		<img src="url"/>
 		<p>text</p>
@@ -92,6 +47,53 @@
 		<p>text</p>
 		<b>hash</b>
 	</div>	
+
+	<script>
+	(function(){
+		var data = sessionStorage.getItem("data");
+	        data = $.parseJSON(data);
+		if(data){
+			var tweetLength = data["tweet"]["num"];
+			var tweetText = "";
+			if(tweetLength > 0){
+				for(var i=0; i<tweetLength; i++){
+					var element = data["tweet"][""+i];
+ 					tweetText+="<img src="
+					if(element.image_url){
+						tweetText+="\""+element.image_url+"\"";
+					}					
+					else{
+						tweetText+="#";
+					}
+					tweetText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"				
+				}
+				if(tweetText!=""){$("#twitter").append(tweetText);}
+							    console.log(tweetText);
+			}
+			
+			var instaLength = data.instagram.num;
+			var instaText = "";
+			if(instaLength > 0){
+				for(var i=0; i<instaLength; i++){
+					var element = data.instagram[""+i];
+					instaText+="<img src="
+					if(element.image_url){
+						instaText+="\""+element.image_url+"\"";
+					}					
+					else{
+						instaText+="#";
+					}
+					instaText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"
+				}
+				if(instaText!=""){$("#instagram").append(instaText);}
+							    console.log(instaText);
+			}
+		}	
+	})();
+	</script>
+	</head>
+	<body>
+	
 
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	</body>

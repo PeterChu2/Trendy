@@ -29,7 +29,7 @@ class Util:
     
     @staticmethod
     def sort_dict_by_values(d):
-        return sorted(d.items(), key=operator.itemgetter(1), reverse=True)
+        return sorted(d.items(), key=operator.itemgetter(1))
 
     
     @staticmethod
