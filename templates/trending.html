@@ -18,23 +18,24 @@
 
 		html { height: 100% }
 		body { height: 100%; margin: 0; padding: 0 }
+		p {border-style: solid;}
 		#map-canvas { height: 100% }
 		.social_networking1{
-		width: 65%; 
-		border: 1px solid black; 
+		width: 65%;
+		border: 1px solid black;
 		float: left
 		}
 		.social_networking2{
-		width: 35%; 
-		border: 1px solid black; 
+		width: 35%;
+		border: 1px solid black;
 		float: left
 		}
 		.invisible{
-		display:none		
+		display:none
 		}
 		img {
 		height:100%;
-		width:100%		
+		width:100%
 		}
 	</style>
 
@@ -52,7 +53,7 @@
 	</div>
 
 	<div class = "social_networking2" id="instagram">
-	</div>	
+	</div>
 
 	<script>
 	(function(){
@@ -64,12 +65,12 @@
 			if(tweetLength > 0){
 				for(var i=0; i<tweetLength; i++){
 					var element = data["tweet"][""+i];
-					tweetText+="<p><font color=\""+element.color+"\">"+element.text+"<b>"+" sentiment:  " +element.sentiment+"\n"+element.hash_tags+"</b></font></p>"			
-							    
+					tweetText+="<p><font color=\""+element.color+"\">"+element.text+"<b>"+" sentiment:  " +element.sentiment+"\n"+element.hash_tags+"</b></font></p>"
+
 							    }
 				if(tweetText!=""){$("#twitter").append(tweetText).removeClass("invisible");}
 			}
-			
+
 			var instaLength = data.instagram.num;
 			var instaText = "";
 			if(instaLength > 0){
@@ -78,7 +79,7 @@
 					instaText+="<img src="
 					if(element.image_url){
 						instaText+="\""+element.image_url+"\"";
-					}					
+					}
 					else{
 						instaText+="#";
 					}
@@ -87,12 +88,12 @@
 				if(instaText!=""){$("#instagram").append(instaText).removeClass("invisible");}
 							    console.log(instaText);
 			}
-		}	
+		}
 	})();
 	</script>
 	</head>
 	<body>
-	
+
 
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	</body>
