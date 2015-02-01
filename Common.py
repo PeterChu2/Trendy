@@ -1,13 +1,9 @@
-from instagram.client import InstagramAPI
 from flask import Flask, request, jsonify, render_template
 from util import Util
 from Twitter import Item
 import Twitter
 
 app = Flask(__name__)
-
-access_token = "YOUR_ACCESS_TOKEN"
-api = InstagramAPI(client_id='5d9cdd5e12dd4ed7862ff7d0b9867bd7', client_secret='ba7221fefb2547f291af2a98d30b768a')
 
 @app.route('/')
 def index():

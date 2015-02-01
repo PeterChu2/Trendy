@@ -1,4 +1,6 @@
+from instagram.client import InstagramAPI
 def grab_instagram(request):
+  api = InstagramAPI(client_id='5d9cdd5e12dd4ed7862ff7d0b9867bd7', client_secret='ba7221fefb2547f291af2a98d30b768a')
   all_posts = []
 
   try:

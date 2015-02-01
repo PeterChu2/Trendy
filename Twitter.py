@@ -38,7 +38,10 @@ class Item:
             }
 
 def grab_twitter(request):
-  #request.form['dist'] is the distance in km.
+  auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+  auth.set_access_token(ACCESS_TOKEN, ACCESS_SECRET)
+  api = tweepy.API(auth)
+  # request.form['dist'] is the distance in km.
   all_posts = Twitter.search_tweets(request.form['lat'], request.form['long'], request.form['value'])
   return all_posts
 
