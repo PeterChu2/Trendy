@@ -24,6 +24,13 @@
 		border: 1px solid black; 
 		float: left
 		}
+		.invisible{
+		display:none		
+		}
+		img {
+		height:50px;
+		width:50px		
+		}
 	</style>
 
 	<!-- Bootstrap -->
@@ -36,16 +43,18 @@
 	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 																																				<![endif]-->
 	<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-	<div class = "social_networking" id="twitter">
+	<div class = "invisible" class = "social_networking" id="twitter">
 		<img src="url"/>
 		<p>text</p>
 		<b>hash</b>
+		<p></p>
 	</div>
 
-	<div class = "social_networking" id="instagram">
+	<div class = "invisible" class = "social_networking" id="instagram">
 		<img src="url"/>
 		<p>text</p>
 		<b>hash</b>
+		<p></p>
 	</div>	
 
 	<script>
@@ -65,9 +74,9 @@
 					else{
 						tweetText+="#";
 					}
-					tweetText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"				
+					tweetText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b><p></p>"				
 				}
-				if(tweetText!=""){$("#twitter").append(tweetText);}
+				if(tweetText!=""){$("#twitter").append(tweetText).removeClass("invisible");}
 							    console.log(tweetText);
 			}
 			
@@ -83,9 +92,9 @@
 					else{
 						instaText+="#";
 					}
-					instaText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b>"
+					instaText+="/><p>"+element.text+"</p><b>"+element.hash_tags+"</b><p></p>"
 				}
-				if(instaText!=""){$("#instagram").append(instaText);}
+				if(instaText!=""){$("#instagram").append(instaText).removeClass("invisible");}
 							    console.log(instaText);
 			}
 		}	
