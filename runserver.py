@@ -18,9 +18,9 @@ def trending():
 @app.route('/nearby', methods=['POST'])
 def nearby():
 
-  insta_items = instagram.grab_instagram(request)
+  insta_items = instagram.get_posts(request)
 
-  tweet_items = twitter.grab_twitter(request)
+  tweet_items = twitter.get_posts(request)
 
   all_items = {'instagram': insta_items,
                'tweet': tweet_items}

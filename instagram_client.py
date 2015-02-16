@@ -12,7 +12,7 @@ class Instagram:
         self.api = InstagramAPI(
             client_id=self.CONSUMER_KEY, client_secret=self.CONSUMER_SECRET)
 
-    def grab_instagram(self, request):
+    def get_posts(self, request):
         all_posts = []
 
         try:
