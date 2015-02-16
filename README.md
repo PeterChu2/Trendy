@@ -1,21 +1,19 @@
-# TwillioApp
+# Trendy
 
-Workflow:
-Website
-1. Get coordinates from google map by clicking on a point
+Trendy is an application that allows users to search nearby areas for trending posts and hashtags.
 
-Phone app: 
-1. Get coordinate from GPS or from taping on a map
+### Local Setup
 
-Twilio:
-1. Get coordinate from GPS
+#### 1. Clone the project:
 
-2. Search tweets near that coordinates
-3. Extract tags, search tweets using those tags
-4. Sort tweets according to relevence and display top 10 (or something)
+    $ git clone https://github.com/PeterChu2/TwillioApp
+    $ cd TwillioApp
 
+#### 2. Install requirements
+    $ pip install -r requirements.txt
 
-5. tinder style tweets (upvote, downvote)
-6. if no tweets within reasonable distance, search landmark near the location and do a search of tags using those landmark names
-7. search location on map
-8. ritetag.com
+#### 3. Run the server
+    $ python runserver.py
+
+#### 4. View the web app at http://127.0.0.1:5000
+    $ open http://127.0.0.1:5000
