@@ -1,4 +1,4 @@
-package com.example.upsight.twilioapp;
+package com.example.uofthacks.trendy;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,9 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import com.google.android.gms.internal.id;
 
 import org.json.JSONException;
 import org.json.JSONObject;

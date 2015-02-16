@@ -1,4 +1,4 @@
-package com.example.upsight.twilioapp;
+package com.example.uofthacks.trendy;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

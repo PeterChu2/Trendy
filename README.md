@@ -6,8 +6,8 @@ Trendy is an application that allows users to search nearby areas for trending p
 
 #### 1. Clone the project:
 
-    $ git clone https://github.com/PeterChu2/TwillioApp
-    $ cd TwillioApp
+    $ git clone https://github.com/PeterChu2/Trendy
+    $ cd Trendy
 
 #### 2. Install requirements
     $ pip install -r requirements.txt
