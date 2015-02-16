@@ -4,7 +4,7 @@ import operator
 non_content = '''!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~ \t\n\r\x0b\x0c'''
 
 class Util:
-    
+
     @staticmethod
     def remove_non_ascii(s):
         removed = filter(lambda x: x in string.printable, s)
@@ -24,14 +24,14 @@ class Util:
         for item in items:
             if item.startswith("#"):
                 tags.append(item.lower())
-        
+
         return tags
-    
+
     @staticmethod
     def sort_dict_by_values(d):
         return sorted(d.items(), key=operator.itemgetter(1))
 
-    
+
     @staticmethod
     def extract_image_urls(short_urls):
         urls = []
@@ -50,3 +50,24 @@ class Util:
             if not item.startswith("http"):
                 texts.append(item)
         return " ".join(texts)
+
+    @staticmethod
+
+    def createJSON(items):
+      json_item = {}
+
+      for key in items:
+        i = 0
+        all_tags = set()
+        json_item[key] = {}
+
+        for item in items[key]:
+          json_item[key][i] = item.serialize()
+          i += 1
+          tag_set = set(item.tags)
+          all_tags = all_tags.union(tag_set)
+
+        json_item[key]['tags'] = list(all_tags)
+        json_item[key]['num'] = i
+
+      return json_item
