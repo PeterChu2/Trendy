@@ -195,4 +195,14 @@ public class MapsActivity extends FragmentActivity {
             fragmentTransaction.commit();
         }
     }
+
+    // Override back press to return to map from detail fragment
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
