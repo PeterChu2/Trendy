@@ -22,27 +22,30 @@ public class DetailFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        JSONObject data = null;
+
         List<String> instagramItems = new ArrayList<String>();
         List<String> twitterItems = new ArrayList<String>();
 
         Bundle bundle = this.getArguments();
         try {
-            data = new JSONObject(bundle.getString("data"));
 
+            JSONObject data = new JSONObject(bundle.getString("data"));
+            JSONObject instagramData = data.getJSONObject("instagram");
+            JSONObject twitterData = data.getJSONObject("tweet");
 
-            int numInstagramElements = data.getJSONObject("instagram").getInt("num");
-            int numTwitterElements = data.getJSONObject("twitter").getInt("num");
+            int numInstagramElements = instagramData.getInt("num");
+            int numTwitterElements = twitterData.getInt("num");
+
             for (int i = 0; i < numInstagramElements; i++) {
-                instagramItems.add(data.getJSONObject(String.valueOf("instagram")).getJSONObject(String.valueOf(i)).getString("text"));
+                instagramItems.add(instagramData.getJSONObject(String.valueOf(i)).getString("text"));
             }
             for (int i = 0; i < numTwitterElements; i++) {
-                twitterItems.add(data.getJSONObject(String.valueOf("twitter")).getJSONObject(String.valueOf(i)).getString("text"));
+                twitterItems.add(twitterData.getJSONObject(String.valueOf(i)).getString("text"));
             }
 
 
         } catch (JSONException e) {
-            Log.e("PETER", "JSON FORMAT IS NOT RIGHT");
+            Log.e("PETER", "JSON FORMAT IS NOT RIGHT" + e.getMessage());
         }
 
         ArrayAdapter<String> instagramAdapter = new ArrayAdapter<String>(getActivity(),

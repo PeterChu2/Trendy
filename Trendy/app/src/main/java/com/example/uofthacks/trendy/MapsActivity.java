@@ -7,8 +7,8 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.AsyncTask;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -127,15 +128,14 @@ public class MapsActivity extends FragmentActivity {
         mMap.animateCamera( cameraUpdate );
     }
 
-    class RetrieveEventsTask extends AsyncTask<LatLng, Void, HttpResponse> {
+    class RetrieveEventsTask extends AsyncTask<LatLng, Void, String> {
 
         private Exception exception;
 
-        protected HttpResponse doInBackground(final LatLng... latLng) {
+        protected String doInBackground(final LatLng... latLng) {
             // Create a new HttpClient and Post Header
             HttpClient httpclient = new DefaultHttpClient();
-//            HttpPost httppost = new HttpPost("http://10.0.2.2:5000/nearby");
-            HttpPost httppost = new HttpPost("https://trendy-posts.herokuapp.com/nearby");
+            HttpPost httppost = new HttpPost("http://trendy-posts.herokuapp.com/nearby");
             HttpResponse response;
             //TO DO
                 int distanceRadius = 100;
@@ -143,13 +143,27 @@ public class MapsActivity extends FragmentActivity {
                 List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
                 nameValuePairs.add(new BasicNameValuePair("lat", String.valueOf(latLng[0].latitude)));
                 nameValuePairs.add(new BasicNameValuePair("long", String.valueOf(latLng[0].longitude)));
-                nameValuePairs.add(new BasicNameValuePair("distance", String.valueOf(distanceRadius)));
+                nameValuePairs.add(new BasicNameValuePair("value", String.valueOf(distanceRadius)));
+            String json = null;
             try {
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
                 // Execute HTTP Post Request
                 response = httpclient.execute(httppost);
-                return response;
+
+                Log.d("PETER", "http response received");
+                try {
+                    HttpEntity entity = response.getEntity();
+                    if( entity == null )
+                    {
+                        return null;
+                    }
+                    json = EntityUtils.toString(entity);
+
+                } catch (IOException e) {
+                    // NOOP
+                    Log.d("PETER", "IOEXCEPTION");
+                }
             }
             catch(ClientProtocolException e) {
                 // NOOP
@@ -158,27 +172,12 @@ public class MapsActivity extends FragmentActivity {
                 // NOOP
             }
 
-            return null;
+            return json;
 
 
         }
 
-        protected void onPostExecute(HttpResponse response) {
-            String json = null;
-            Log.d("PETER", "http response received");
-            try {
-                if( response == null )
-                {
-                    return;
-                }
-
-                json = EntityUtils.toString(response.getEntity());
-
-            } catch (IOException e) {
-                // NOOP
-            }
-
-
+        protected void onPostExecute(String json) {
             DetailFragment fr = new DetailFragment();
             FragmentManager fm = getFragmentManager();
 
@@ -191,8 +190,19 @@ public class MapsActivity extends FragmentActivity {
             fr.setArguments(bundle);
 
             FragmentTransaction fragmentTransaction = fm.beginTransaction();
-            fragmentTransaction.replace(R.id.map, fr);
+            fragmentTransaction.replace(R.id.map, fr, "DetailFragment");
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
+        }
+    }
+
+    // Override back press to return to map from detail fragment
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0) {
+            getFragmentManager().popBackStack();
+        } else {
+            super.onBackPressed();
         }
     }
 }
