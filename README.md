@@ -2,6 +2,10 @@
 
 Trendy is an application that allows users to search nearby areas for trending posts and hashtags.
 
+### View the app in production
+
+Visit http://trendy-posts.herokuapp.com
+
 ### Local Setup
 
 #### 1. Clone the project:
