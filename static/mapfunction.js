@@ -54,7 +54,15 @@ function initialize() {
 }
 
 function postServer(val){
-	jQuery.post("http://trendy-posts.herokuapp.com/nearby", {lat: pos.k, long: pos.D, value: val}, function(data){
+    if(document.location.hostname == "trendy-posts.herokuapp.com" )
+    {
+        url = "http://trendy-posts.herokuapp.com/nearby"
+    }
+    else
+    {
+        url = "http://127.0.0.1:5000/nearby"
+    }
+	jQuery.post(url, {lat: pos.k, long: pos.D, value: val}, function(data){
 	    //alert(data);
 	    console.log(data);
 	    console.log(typeof data);
