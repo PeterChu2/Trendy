@@ -26,7 +26,7 @@ function initialize() {
                 infowindow.open(map, marker);
 
             google.maps.event.addListener(map, 'click', function (e) {
-		pos = e.latLng;                
+		pos = e.latLng;
 		marker.setMap(null)
                 marker = new google.maps.Marker({
                     position: pos,
@@ -54,7 +54,7 @@ function initialize() {
 }
 
 function postServer(val){
-	jQuery.post("http://127.0.0.1:5000/nearby", {lat: pos.k, long: pos.D, value: val}, function(data){
+	jQuery.post("http://trendy-posts.herokuapp.com/nearby", {lat: pos.k, long: pos.D, value: val}, function(data){
 	    //alert(data);
 	    console.log(data);
 	    console.log(typeof data);

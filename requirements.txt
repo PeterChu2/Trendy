@@ -7,3 +7,6 @@ simplejson==3.6.5
 tweepy==3.2.0
 Unirest==1.1.7
 urllib3==1.8.3
+virtualenv==1.11.6
+virtualenv-clone==0.2.5
+virtualenvwrapper==4.3

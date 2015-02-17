@@ -135,7 +135,7 @@ public class MapsActivity extends FragmentActivity {
             // Create a new HttpClient and Post Header
             HttpClient httpclient = new DefaultHttpClient();
 //            HttpPost httppost = new HttpPost("http://10.0.2.2:5000/nearby");
-            HttpPost httppost = new HttpPost("http://192.168.43.76:5000/nearby");
+            HttpPost httppost = new HttpPost("https://trendy-posts.herokuapp.com/nearby");
             HttpResponse response;
             //TO DO
                 int distanceRadius = 100;
