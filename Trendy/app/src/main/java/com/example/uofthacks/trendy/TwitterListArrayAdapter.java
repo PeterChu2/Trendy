@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.uofthacks.trendy.util.DownloadImageTask;
+import com.koushikdutta.ion.Ion;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -53,8 +53,11 @@ import java.util.List;
                 try {
                     String imageURL = data.getJSONArray("image_url").getString(0);
                     if(imageURL != null)
-                        new DownloadImageTask(tweetPicture)
-                                .execute(imageURL);
+                        // Use Ion Library to load image because it supports caching and
+                        // listview adapter support
+                        Ion.with(tweetPicture)
+                                .placeholder(R.drawable.twitter_icon)
+                                .load(imageURL);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

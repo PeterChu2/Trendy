@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.uofthacks.trendy.util.DownloadImageTask;
+import com.koushikdutta.ion.Ion;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -54,8 +54,13 @@ public class InstagramListArrayAdapter extends ArrayAdapter<JSONObject> {
             try {
                 String imageURL = data.getJSONArray("image_url").getString(0);
                 if(imageURL != null)
-                    new DownloadImageTask(instagramPicture)
-                            .execute(imageURL);
+                {
+                    // Use Ion Library to load image because it supports caching and
+                    // listview adapter support
+                    Ion.with(instagramPicture)
+                            .placeholder(R.drawable.instagram_icon)
+                            .load(imageURL);
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
