@@ -9,38 +9,58 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.uofthacks.trendy.util.DownloadImageTask;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+
 /**
  * Created by peter on 19/02/15.
  */
-public class InstagramListArrayAdapter extends ArrayAdapter<String> {
+public class InstagramListArrayAdapter extends ArrayAdapter<JSONObject> {
 
-    public InstagramListArrayAdapter(Context context, int layoutResourceId, String[] data)
+    private Context context;
+
+    public InstagramListArrayAdapter(Context context, List<JSONObject> data)
     {
-        super(context, layoutResourceId, data);
-        this.layoutResourceId = layoutResourceId;
+        super(context, R.layout.instagram_item, data);
         this.context = context;
-        this.data = data;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View row = convertView;
-        ImageView instagramPicture;
-        TextView instagramCaption;
 
-        if(row == null)
-        {
-            LayoutInflater inflater = ((Activity)context).getLayoutInflater();
-            row = inflater.inflate(layoutResourceId, parent, false);
+        // check if view is null, if it is, must inflate it
+//        if(row == null) {
+            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+            row = inflater.inflate(R.layout.instagram_item, parent, false);
+//        }
 
-            instagramPicture = (ImageView)row.findViewById(R.id.instagram_picture);
-            instagramCaption = (TextView)row.findViewById(R.id.instagram_caption);
+        JSONObject data = getItem(position);
+        if(data != null) {
+            ImageView instagramPicture = (ImageView) row.findViewById(R.id.instagram_picture);
+            TextView instagramCaption = (TextView) row.findViewById(R.id.instagram_caption);
+
+            try {
+                instagramCaption.setText(data.getString("text"));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+
+            try {
+                String imageURL = data.getJSONArray("image_url").getString(0);
+                if(imageURL != null)
+                    new DownloadImageTask(instagramPicture)
+                            .execute(imageURL);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
 
         }
-        else
-        {
-        }
-
         return row;
     }
 
