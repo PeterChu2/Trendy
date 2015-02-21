@@ -2,6 +2,7 @@ package com.example.uofthacks.trendy;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ import java.util.List;
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                tweetText.setMovementMethod(new ScrollingMovementMethod());
 
                 try {
                     String imageURL = data.getJSONArray("image_url").getString(0);

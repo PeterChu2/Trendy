@@ -2,6 +2,7 @@ package com.example.uofthacks.trendy;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ public class InstagramListArrayAdapter extends ArrayAdapter<JSONObject> {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            instagramCaption.setMovementMethod(new ScrollingMovementMethod());
 
 
             try {
