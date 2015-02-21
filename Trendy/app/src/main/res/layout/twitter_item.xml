@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/border">
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/tweet_text"
-    android:layout_width="match_parent"
-    android:layout_weight="5"
-    android:layout_height="0dp"
-    android:gravity="center"
-    android:layout_gravity="center">
-</TextView>
-<ImageView
-android:id="@+id/tweet_picture"
-    android:layout_width="match_parent"
-    android:layout_weight="1"
-    android:layout_height="0dp"
-    android:layout_gravity="center"
->
-</ImageView>
+    android:background="@drawable/border"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tweet_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:maxLines="4"
+        android:scrollbars="vertical"></TextView>
+
+    <ImageView
+        android:id="@+id/tweet_picture"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:contentDescription="@string/picture_description"></ImageView>
 </LinearLayout>

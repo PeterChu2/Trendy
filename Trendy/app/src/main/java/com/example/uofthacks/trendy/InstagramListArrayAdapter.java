@@ -24,8 +24,7 @@ public class InstagramListArrayAdapter extends ArrayAdapter<JSONObject> {
 
     private Context context;
 
-    public InstagramListArrayAdapter(Context context, List<JSONObject> data)
-    {
+    public InstagramListArrayAdapter(Context context, List<JSONObject> data) {
         super(context, R.layout.instagram_item, data);
         this.context = context;
     }
@@ -35,13 +34,13 @@ public class InstagramListArrayAdapter extends ArrayAdapter<JSONObject> {
         View row = convertView;
 
         // check if view is null, if it is, must inflate it
-//        if(row == null) {
+        if (row == null) {
             LayoutInflater inflater = ((Activity) context).getLayoutInflater();
             row = inflater.inflate(R.layout.instagram_item, parent, false);
-//        }
+        }
 
         JSONObject data = getItem(position);
-        if(data != null) {
+        if (data != null) {
             ImageView instagramPicture = (ImageView) row.findViewById(R.id.instagram_picture);
             TextView instagramCaption = (TextView) row.findViewById(R.id.instagram_caption);
 
@@ -55,8 +54,7 @@ public class InstagramListArrayAdapter extends ArrayAdapter<JSONObject> {
 
             try {
                 String imageURL = data.getJSONArray("image_url").getString(0);
-                if(imageURL != null)
-                {
+                if (imageURL != null) {
                     // Use Ion Library to load image because it supports caching and
                     // listview adapter support
                     Ion.with(instagramPicture)

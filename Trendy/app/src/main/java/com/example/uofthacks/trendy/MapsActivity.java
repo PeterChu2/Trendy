@@ -129,9 +129,8 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
         updateMapLocation(location);
     }
 
-    private void updateMapLocation(Location mLastLocation)
-    {
-        if(mLastLocation != null) {
+    private void updateMapLocation(Location mLastLocation) {
+        if (mLastLocation != null) {
             LatLng currentLatLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(currentLatLng, 16);
             // null check

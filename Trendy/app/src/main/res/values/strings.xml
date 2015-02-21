@@ -5,5 +5,6 @@
     <string name="title_activity_maps">Trendy</string>
     <string name="distance">Distance Radius</string>
     <string name="no_location_detected">No Location Detected! Ensure location is enabled in your phone settings.</string>
+    <string name="picture_description">Twitter picture</string>
 
 </resources>

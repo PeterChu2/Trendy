@@ -31,9 +31,11 @@ import java.util.List;
  */
 public class RetrieveEventsTask extends AsyncTask<LatLng, Void, String> {
     private Activity mActivity;
-    public RetrieveEventsTask(Activity activity){
+
+    public RetrieveEventsTask(Activity activity) {
         mActivity = activity;
     }
+
     protected String doInBackground(final LatLng... latLng) {
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
@@ -41,7 +43,7 @@ public class RetrieveEventsTask extends AsyncTask<LatLng, Void, String> {
         HttpResponse response;
         //TO DO
         int distanceRadius = 100;
-        // Add your data
+        // Add parameters required
         List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
         nameValuePairs.add(new BasicNameValuePair("lat", String.valueOf(latLng[0].latitude)));
         nameValuePairs.add(new BasicNameValuePair("long", String.valueOf(latLng[0].longitude)));
@@ -53,24 +55,19 @@ public class RetrieveEventsTask extends AsyncTask<LatLng, Void, String> {
             // Execute HTTP Post Request
             response = httpclient.execute(httppost);
 
-            Log.d("PETER", "http response received");
             try {
                 HttpEntity entity = response.getEntity();
-                if( entity == null )
-                {
+                if (entity == null) {
                     return null;
                 }
                 json = EntityUtils.toString(entity);
 
             } catch (IOException e) {
                 // NOOP
-                Log.d("PETER", "IOEXCEPTION");
             }
-        }
-        catch(ClientProtocolException e) {
+        } catch (ClientProtocolException e) {
             // NOOP
-        }
-        catch( IOException e) {
+        } catch (IOException e) {
             // NOOP
         }
 
@@ -84,8 +81,7 @@ public class RetrieveEventsTask extends AsyncTask<LatLng, Void, String> {
         FragmentManager fm = mActivity.getFragmentManager();
 
         Bundle bundle = new Bundle();
-        if(json == null)
-        {
+        if (json == null) {
             Log.e("ERROR", "ERROR with json - it is null");
         }
         bundle.putString("data", json);
