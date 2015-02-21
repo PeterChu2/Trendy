@@ -15,7 +15,9 @@
         android:layout_width="match_parent"
         android:maxLines="3"
         android:scrollbars="vertical"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/border">
     </TextView>
 </LinearLayout>
 

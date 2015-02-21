@@ -2,19 +2,23 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/border">
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/tweet_text"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_weight="5"
-    android:layout_height="wrap_content">
+    android:layout_height="0dp"
+    android:gravity="center"
+    android:layout_gravity="center">
 </TextView>
 <ImageView
 android:id="@+id/tweet_picture"
-    android:layout_width="0dp"
+    android:layout_width="match_parent"
     android:layout_weight="1"
-    android:layout_height="100dp"
+    android:layout_height="0dp"
+    android:layout_gravity="center"
 >
 </ImageView>
 </LinearLayout>
