@@ -112,9 +112,6 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
                         }
                         marker = mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
-                                .snippet(
-                                        "Lat:" + latLng.latitude + "Lng:"
-                                                + latLng.longitude)
                                 .icon(BitmapDescriptorFactory
                                         .defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                                 .title("ME"));
