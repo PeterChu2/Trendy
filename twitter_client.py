@@ -31,7 +31,7 @@ class Twitter:
 
     def search_tweets(self, lat, lng, dist):
         gcode = str(lat) + "," + str(lng) + "," + str(dist) + "km"
-        public_tweets = self.api.search(geocode=gcode, count=100)
+        public_tweets = self.api.search(geocode=gcode, count=100, include_entities=True)
         tags = {}
         tag_to_tweets = {}
         all_tweets = []
@@ -41,7 +41,9 @@ class Twitter:
             if len(new_tweet) > 0:
                 hashtags = Util.extract_hashtags(new_tweet)
                 image_urls = []
-                image_urls = Util.extract_image_urls(tweet.entities["urls"])
+                if 'media' in tweet.entities:
+                  image_urls = Util.extract_image_urls(tweet.entities["media"])
+                  all_tweets = []
 
                 text = Util.extract_text(new_tweet)
                 tweet_object = Item(text, image_urls, hashtags)

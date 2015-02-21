@@ -37,7 +37,7 @@ class Util:
         urls = []
 
         for u in short_urls:
-            urls.append(u["expanded_url"])
+            urls.append(u["media_url"])
 
         return urls
 
