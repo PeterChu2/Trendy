@@ -1,10 +1,9 @@
 class Item:
 
-    def __init__(self, text, imgs, tags, sentiment="neutral"):
+    def __init__(self, text, imgs, tags):
         self.text = text
         self.imgs = imgs
         self.tags = tags
-        self.sentiment = sentiment
         self.color = "black"
 
     def serialize(self):
@@ -12,6 +11,5 @@ class Item:
             "text": self.text,
             "image_url": self.imgs,
             "hash_tags": self.tags,
-            "sentiment": self.sentiment,
             "color": self.color,
         }

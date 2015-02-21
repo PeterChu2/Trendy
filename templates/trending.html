@@ -65,8 +65,7 @@
 			if(tweetLength > 0){
 				for(var i=0; i<tweetLength; i++){
 					var element = data["tweet"][""+i];
-					tweetText+="<p><font color=\""+element.color+"\">"+element.text+"<b>"+" sentiment:  " +element.sentiment+"\n"+element.hash_tags+"</b></font></p>"
-
+					tweetText+="<p align=\"center\"><font color=\""+element.color+"\" size=\"5\">"+element.text+"<b>\n"+element.hash_tags+"</b></font></p>"
 							    }
 				if(tweetText!=""){$("#twitter").append(tweetText).removeClass("invisible");}
 			}
