@@ -52,12 +52,13 @@ import java.util.List;
 
                 try {
                     String imageURL = data.getJSONArray("image_url").getString(0);
-                    if(imageURL != null)
+                    if(imageURL != null) {
                         // Use Ion Library to load image because it supports caching and
                         // listview adapter support
                         Ion.with(tweetPicture)
                                 .placeholder(R.drawable.twitter_icon)
                                 .load(imageURL);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
