@@ -1,11 +1,12 @@
-package com.example.uofthacks.trendy;
+package com.example.uofthacks.trendy.ui;
 
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
-import com.example.uofthacks.trendy.util.RetrieveEventsTask;
+import com.example.uofthacks.trendy.R;
+import com.example.uofthacks.trendy.util.RetrievePostsTask;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;
@@ -115,7 +116,8 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
                                 .icon(BitmapDescriptorFactory
                                         .defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
                                 .title("ME"));
-                        new RetrieveEventsTask(mActivity).execute(latLng);
+                        marker.showInfoWindow();
+                        new RetrievePostsTask(mActivity).execute(latLng);
                     }
                 }
         );

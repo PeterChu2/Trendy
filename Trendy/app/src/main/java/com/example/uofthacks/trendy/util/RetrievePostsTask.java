@@ -7,7 +7,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.example.uofthacks.trendy.DetailFragment;
+import com.example.uofthacks.trendy.ui.DetailFragment;
 import com.example.uofthacks.trendy.R;
 import com.google.android.gms.maps.model.LatLng;
 
@@ -29,10 +29,10 @@ import java.util.List;
 /**
  * Created by peter on 21/02/15.
  */
-public class RetrieveEventsTask extends AsyncTask<LatLng, Void, String> {
+public class RetrievePostsTask extends AsyncTask<LatLng, Void, String> {
     private Activity mActivity;
 
-    public RetrieveEventsTask(Activity activity) {
+    public RetrievePostsTask(Activity activity) {
         mActivity = activity;
     }
 

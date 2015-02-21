@@ -1,4 +1,4 @@
-package com.example.uofthacks.trendy;
+package com.example.uofthacks.trendy.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.example.uofthacks.trendy.adapters.InstagramListArrayAdapter;
+import com.example.uofthacks.trendy.R;
+import com.example.uofthacks.trendy.adapters.TwitterListArrayAdapter;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Upsight on 2015-02-01.
+ * Created by Peter on 2015-02-01.
  */
 public class DetailFragment extends Fragment {
     @Override
