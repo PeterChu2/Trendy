@@ -12,11 +12,7 @@ class Twitter:
     ACCESS_TOKEN = "2739941347-JFMFrA13BA5w3WQFmKLxm79oGt5IMuGY4BCfEBC"
     ACCESS_SECRET = "BOWclPeXkxqy98DUFu1M1pg4RdgXOWUpfvsMS32Ezu66t"
     TOP_K = 50
-    QUERY = "https://loudelement-free-natural-language-processing-service.p.mashape.com/nlp-text/?text="
-    HEADERS = {
-        "X-Mashape-Key": "WOe6Znx5UpmshoVnevTHgeoYSUfDp1JaNjajsn6CJob9bRSHJd",
-        "Accept": "application/json"
-    }
+
 
     def __init__(self):
         auth = tweepy.OAuthHandler(self.CONSUMER_KEY, self.CONSUMER_SECRET)
@@ -59,16 +55,7 @@ class Twitter:
         sorted_tags = Util.sort_dict_by_values(tags)
 
         for i in range(min(self.TOP_K, len(sorted_tags))):
-            for tweet in tag_to_tweets[sorted_tags[len(sorted_tags) - 1 - i][0]]:
-                response = unirest.get(self.QUERY + urllib2.quote(tweet.text, ""),
-                                       headers=self.HEADERS)
-                sentiment = response.body["sentiment-text"]
-                tweet.sentiment = sentiment
-
-                if sentiment == "positive":
-                    tweet.color = "red"
-                elif sentiment == "negative":
-                    tweet.color = "blue"
+            for tweet in tag_to_tweets[sorted_tags[i][0]]:
                 all_tweets.append(tweet)
 
         return all_tweets
