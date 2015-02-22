@@ -3,6 +3,7 @@ var map;var pos;
 function initialize() {
     var mapOptions = {
         scaleControl: true,
+        streetViewControl: false,
         zoom: 6
     };
     map = new google.maps.Map(document.getElementById('map-canvas'),
