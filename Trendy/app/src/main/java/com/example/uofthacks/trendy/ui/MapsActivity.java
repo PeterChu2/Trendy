@@ -48,11 +48,11 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
                 .build();
 
         mDistanceSeekBar = (SeekBar) findViewById(R.id.distanceSeekBar);
-        mDistanceSeekBar.setOnSeekBarChangeListener( new SeekBar.OnSeekBarChangeListener() {
+        mDistanceSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 // circle will be set with radius from 0-20 km
-                if(mCircle != null) {
+                if (mCircle != null) {
                     mCircle.setRadius(progress * 1000);
                 }
             }
@@ -73,7 +73,7 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
         final View.OnClickListener onSearchButtonClickedListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(marker != null ) {
+                if (marker != null) {
                     LatLng latLng = marker.getPosition();
                     new RetrievePostsTask(mActivity).execute(latLng);
                 }
@@ -168,8 +168,14 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
                                 .position(latLng)
                                 .icon(BitmapDescriptorFactory
                                         .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                        int distance;
+                        if (mDistanceSeekBar != null) {
+                            distance = mDistanceSeekBar.getProgress();
+                        } else {
+                            distance = 1000;
+                        }
                         CircleOptions circleOptions = new CircleOptions()
-                                .radius(1000)
+                                .radius(distance)
                                 .center(latLng);
                         mCircle = mMap.addCircle(circleOptions);
 
@@ -192,7 +198,7 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
     private void updateMapLocation(Location mLastLocation) {
         if (mLastLocation != null) {
             LatLng currentLatLng = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(currentLatLng, 16);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(currentLatLng, 12);
             // null check
             if (mMap != null) {
                 mMap.animateCamera(cameraUpdate);
