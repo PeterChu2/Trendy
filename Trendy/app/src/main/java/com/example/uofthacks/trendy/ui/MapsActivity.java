@@ -1,8 +1,12 @@
 package com.example.uofthacks.trendy.ui;
 
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.example.uofthacks.trendy.R;
@@ -16,6 +20,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -26,15 +32,55 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
     private Marker marker;
     private GoogleApiClient mGoogleApiClient;
     private FragmentActivity mActivity;
+    private SeekBar mDistanceSeekBar;
+    private Button mSearchButton;
+    private Circle mCircle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_maps);
+
+        // build the api client
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addApi(LocationServices.API)
                 .build();
-        setContentView(R.layout.activity_maps);
+
+        mDistanceSeekBar = (SeekBar) findViewById(R.id.distanceSeekBar);
+        mDistanceSeekBar.setOnSeekBarChangeListener( new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // circle will be set with radius from 0-20 km
+                if(mCircle != null) {
+                    mCircle.setRadius(progress * 1000);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        // search will be sent on click of the button
+        mSearchButton = (Button) findViewById(R.id.searchButton);
+        final View.OnClickListener onSearchButtonClickedListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(marker != null ) {
+                    LatLng latLng = marker.getPosition();
+                    new RetrievePostsTask(mActivity).execute(latLng);
+                }
+            }
+        };
+        mSearchButton.setOnClickListener(onSearchButtonClickedListener);
+
         mActivity = this;
         setUpMapIfNeeded();
     }
@@ -101,26 +147,38 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
         mGoogleApiClient.connect();
     }
 
+    /*
+     * Sets up map when it is ready
+     */
     @Override
     public void onMapReady(GoogleMap map) {
+
+        // define circle to overlay the marker to show distance
         mMap = map;
         mMap.setOnMapClickListener(
                 new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(LatLng latLng) {
                         if (marker != null) {
+                            // only one marker and one circle may exist at one time
                             marker.remove();
+                            mCircle.remove();
                         }
                         marker = mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
                                 .icon(BitmapDescriptorFactory
-                                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-                                .title("ME"));
-                        marker.showInfoWindow();
-                        new RetrievePostsTask(mActivity).execute(latLng);
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+                        CircleOptions circleOptions = new CircleOptions()
+                                .radius(1000)
+                                .center(latLng);
+                        mCircle = mMap.addCircle(circleOptions);
+
+                        mCircle.setFillColor(Color.TRANSPARENT);
+                        mCircle.setStrokeColor(0x10000000);
                     }
                 }
         );
+
         mMap.setMyLocationEnabled(true);
 
     }
@@ -143,4 +201,5 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
             }
         }
     }
+
 }
