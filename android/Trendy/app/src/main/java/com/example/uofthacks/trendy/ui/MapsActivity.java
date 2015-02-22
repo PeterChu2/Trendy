@@ -205,9 +205,10 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
             // null check
             if (mMap != null) {
                 mMap.animateCamera(cameraUpdate);
-            } else {
-                Toast.makeText(this, R.string.no_location_detected, Toast.LENGTH_LONG).show();
             }
+        }
+        else {
+            Toast.makeText(this, R.string.no_location_detected, Toast.LENGTH_LONG).show();
         }
     }
 
