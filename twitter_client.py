@@ -58,7 +58,8 @@ class Twitter:
             for tweet in tag_to_tweets[sorted_tags[i][0]]:
                 all_tweets.append(tweet)
 
-        return all_tweets
+        # Remove all duplicate items
+        return list(set(all_tweets))
 
     if __name__ == "__main__":
         lat = 43.665459
