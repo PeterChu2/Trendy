@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import com.example.uofthacks.trendy.adapters.InstagramListArrayAdapter;
 import com.example.uofthacks.trendy.R;
@@ -22,10 +23,15 @@ import java.util.List;
  * Created by Peter on 2015-02-01.
  */
 public class DetailFragment extends Fragment {
+
+    private RelativeLayout mRelativeLayout;
+    
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        mRelativeLayout = (RelativeLayout) getActivity().findViewById(R.id.footer);
+        mRelativeLayout.setVisibility(View.GONE);
         List<JSONObject> instagramItems = new ArrayList<JSONObject>();
         List<JSONObject> twitterItems = new ArrayList<JSONObject>();
 
@@ -62,6 +68,12 @@ public class DetailFragment extends Fragment {
         twitterListView.setAdapter(twitterAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mRelativeLayout.setVisibility(View.VISIBLE);
     }
 
 }

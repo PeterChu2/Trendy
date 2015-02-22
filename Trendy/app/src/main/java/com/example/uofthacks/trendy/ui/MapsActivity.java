@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -103,6 +104,8 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
     protected void onResume() {
         super.onResume();
         setUpMapIfNeeded();
+        RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.footer);
+        relativeLayout.setVisibility(View.VISIBLE);
     }
 
     /**
