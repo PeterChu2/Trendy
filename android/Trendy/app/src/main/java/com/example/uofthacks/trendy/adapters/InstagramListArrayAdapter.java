@@ -32,39 +32,39 @@ public class InstagramListArrayAdapter extends ArrayAdapter<JSONObject> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View row = convertView;
-
-        // check if view is null, if it is, must inflate it
-        if (row == null) {
-            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
-            row = inflater.inflate(R.layout.instagram_item, parent, false);
-        }
-
+        View row = null;
         JSONObject data = getItem(position);
+
         if (data != null) {
+            String text = null;
+            String imageURL = null;
+            // get data
+            try {
+                text = data.getString("text");
+                imageURL = data.getJSONArray("image_url").getString(0);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            LayoutInflater inflater = ((Activity) context).getLayoutInflater();
+
+            // inflate a different layout depending if a caption is available
+            if ((text != null) && !text.isEmpty()) {
+                row = inflater.inflate(R.layout.instagram_item, parent, false);
+                TextView instagramCaption = (TextView) row.findViewById(R.id.instagram_caption);
+                instagramCaption.setText(text);
+                instagramCaption.setMovementMethod(new ScrollingMovementMethod());
+            }
+            else {
+                row = inflater.inflate(R.layout.instagram_item_no_caption, parent, false);
+            }
+
+            // Use Ion Library to load image because it supports caching and
+            // listview adapter support
             ImageView instagramPicture = (ImageView) row.findViewById(R.id.instagram_picture);
-            TextView instagramCaption = (TextView) row.findViewById(R.id.instagram_caption);
-
-            try {
-                instagramCaption.setText(data.getString("text"));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            instagramCaption.setMovementMethod(new ScrollingMovementMethod());
-
-
-            try {
-                String imageURL = data.getJSONArray("image_url").getString(0);
-                if (imageURL != null) {
-                    // Use Ion Library to load image because it supports caching and
-                    // listview adapter support
-                    Ion.with(instagramPicture)
-                            .placeholder(R.drawable.instagram_icon)
-                            .load(imageURL);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+            Ion.with(instagramPicture)
+                    .placeholder(R.drawable.twitter_icon)
+                    .load(imageURL);
 
         }
         return row;
