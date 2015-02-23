@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/border"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/tweet_text"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="3"
         android:layout_gravity="center"
         android:gravity="center"
         android:maxLines="4"
@@ -16,9 +17,11 @@
 
     <ImageView
         android:id="@+id/tweet_picture"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:layout_gravity="center"
         android:contentDescription="@string/picture_description"
-        android:maxHeight="150dp"></ImageView>
+        android:maxHeight="400dp"
+        android:padding="10dp"></ImageView>
 </LinearLayout>

@@ -2,21 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:background="@drawable/border"
+    android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/instagram_picture"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"></ImageView>
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="180dp"
+        android:padding="10dp"></ImageView>
 
     <TextView
         android:id="@+id/instagram_caption"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/border"
         android:gravity="center"
         android:maxLines="3"
-        android:scrollbars="vertical"></TextView>
+        android:scrollbars="vertical"
+        android:padding="10dp"></TextView>
 </LinearLayout>
 
