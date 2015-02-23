@@ -1,17 +1,16 @@
 package com.example.uofthacks.trendy.ui;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 
-import com.example.uofthacks.trendy.adapters.InstagramListArrayAdapter;
 import com.example.uofthacks.trendy.R;
-import com.example.uofthacks.trendy.adapters.TwitterListArrayAdapter;
+import com.example.uofthacks.trendy.adapters.SectionsPagerAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -25,7 +24,8 @@ import java.util.List;
 public class DetailFragment extends Fragment {
 
     private RelativeLayout mRelativeLayout;
-    
+    private SlidingTabLayout mSlidingTabLayout;
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -34,38 +34,29 @@ public class DetailFragment extends Fragment {
         mRelativeLayout.setVisibility(View.GONE);
         List<JSONObject> instagramItems = new ArrayList<JSONObject>();
         List<JSONObject> twitterItems = new ArrayList<JSONObject>();
+        JSONObject instagramData = null;
+        JSONObject twitterData = null;
 
         Bundle bundle = this.getArguments();
         try {
 
             JSONObject data = new JSONObject(bundle.getString("data"));
-            JSONObject instagramData = data.getJSONObject("instagram");
-            JSONObject twitterData = data.getJSONObject("tweet");
-
-            int numInstagramElements = instagramData.getInt("num");
-            int numTwitterElements = twitterData.getInt("num");
-
-            for (int i = 0; i < numInstagramElements; i++) {
-                instagramItems.add(instagramData.getJSONObject(String.valueOf(i)));
-            }
-            for (int i = 0; i < numTwitterElements; i++) {
-                twitterItems.add(twitterData.getJSONObject(String.valueOf(i)));
-            }
+            instagramData = data.getJSONObject("instagram");
+            twitterData = data.getJSONObject("tweet");
 
         } catch (JSONException e) {
             Log.e("PETER", "JSON FORMAT IS NOT RIGHT" + e.getMessage());
         }
 
-        InstagramListArrayAdapter instagramAdapter = new InstagramListArrayAdapter(getActivity(),
-                instagramItems);
-        TwitterListArrayAdapter twitterAdapter = new TwitterListArrayAdapter(getActivity(),
-                twitterItems);
 
         View view = inflater.inflate(R.layout.view_fragment_layout, container, false);
-        ListView twitterListView = (ListView) view.findViewById(R.id.twitter_list_view);
-        ListView instagramListView = (ListView) view.findViewById(R.id.instagram_list_view);
-        instagramListView.setAdapter(instagramAdapter);
-        twitterListView.setAdapter(twitterAdapter);
+        SectionsPagerAdapter sectionsPagerAdapter = new SectionsPagerAdapter(getFragmentManager(),
+                getActivity(), twitterData.toString(), instagramData.toString());
+        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
+        viewPager.setAdapter(sectionsPagerAdapter);
+
+        mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
+        mSlidingTabLayout.setViewPager(viewPager);
 
         return view;
     }

@@ -33,8 +33,8 @@
             android:layout_height="match_parent"
             android:layout_toEndOf="@id/searchButton"
             android:layout_toRightOf="@id/searchButton"
-            android:paddingLeft="40dp"
             android:gravity="center"
+            android:paddingLeft="40dp"
             android:text="@string/distance" />
 
         <SeekBar
@@ -46,10 +46,9 @@
             android:layout_toEndOf="@id/distanceTextView"
             android:layout_toRightOf="@id/distanceTextView"
             android:max="20"
-            android:minHeight="58dp"
             android:maxHeight="58dp"
-            android:paddingRight="10dp"
-         />
+            android:minHeight="58dp"
+            android:paddingRight="10dp" />
 
     </RelativeLayout>
 </LinearLayout>

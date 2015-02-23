@@ -1,14 +1,15 @@
 package com.example.uofthacks.trendy.util;
 
-import android.app.Activity;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
-import com.example.uofthacks.trendy.ui.DetailFragment;
 import com.example.uofthacks.trendy.R;
+import com.example.uofthacks.trendy.ui.DetailFragment;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.apache.http.HttpEntity;
@@ -30,9 +31,9 @@ import java.util.List;
  * Created by peter on 21/02/15.
  */
 public class RetrievePostsTask extends AsyncTask<LatLng, Void, String> {
-    private Activity mActivity;
+    private FragmentActivity mActivity;
 
-    public RetrievePostsTask(Activity activity) {
+    public RetrievePostsTask(FragmentActivity activity) {
         mActivity = activity;
     }
 
@@ -78,7 +79,7 @@ public class RetrievePostsTask extends AsyncTask<LatLng, Void, String> {
 
     protected void onPostExecute(String json) {
         DetailFragment fr = new DetailFragment();
-        FragmentManager fm = mActivity.getFragmentManager();
+        FragmentManager fm = mActivity.getSupportFragmentManager();
 
         Bundle bundle = new Bundle();
         if (json == null) {
