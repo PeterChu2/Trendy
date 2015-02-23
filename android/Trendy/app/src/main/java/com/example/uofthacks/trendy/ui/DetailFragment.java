@@ -56,6 +56,7 @@ public class DetailFragment extends Fragment {
         viewPager.setAdapter(sectionsPagerAdapter);
 
         mSlidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
+        mSlidingTabLayout.setDistributeEvenly(true);
         mSlidingTabLayout.setViewPager(viewPager);
 
         return view;
