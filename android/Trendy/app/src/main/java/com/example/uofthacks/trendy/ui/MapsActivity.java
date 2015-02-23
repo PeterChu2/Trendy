@@ -162,28 +162,7 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
                 new GoogleMap.OnMapClickListener() {
                     @Override
                     public void onMapClick(LatLng latLng) {
-                        if (marker != null) {
-                            // only one marker and one circle may exist at one time
-                            marker.remove();
-                            mCircle.remove();
-                        }
-                        marker = mMap.addMarker(new MarkerOptions()
-                                .position(latLng)
-                                .icon(BitmapDescriptorFactory
-                                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
-                        int distance;
-                        if (mDistanceSeekBar != null) {
-                            distance = mDistanceSeekBar.getProgress();
-                        } else {
-                            distance = 1000;
-                        }
-                        CircleOptions circleOptions = new CircleOptions()
-                                .radius(distance)
-                                .center(latLng);
-                        mCircle = mMap.addCircle(circleOptions);
-
-                        mCircle.setFillColor(Color.TRANSPARENT);
-                        mCircle.setStrokeColor(0x10000000);
+                        setMarker(latLng);
                     }
                 }
         );
@@ -206,9 +185,37 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
             if (mMap != null) {
                 mMap.animateCamera(cameraUpdate);
             }
+            setMarker(currentLatLng);
         } else {
             Toast.makeText(this, R.string.no_location_detected, Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void setMarker(LatLng latLng) {
+        if (marker != null) {
+            // only one marker and one circle may exist at one time
+            marker.remove();
+            mCircle.remove();
+        }
+        marker = mMap.addMarker(new MarkerOptions()
+                .position(latLng)
+                .icon(BitmapDescriptorFactory
+                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE)));
+        int distance;
+        if (mDistanceSeekBar != null) {
+            distance = mDistanceSeekBar.getProgress();
+        } else {
+            distance = 10;
+        }
+        CircleOptions circleOptions = new CircleOptions()
+                .radius(1000)
+                .center(latLng);
+        mCircle = mMap.addCircle(circleOptions);
+        mCircle.setFillColor(Color.TRANSPARENT);
+        mCircle.setStrokeColor(0x10000000);
+
+        // immediately show circle
+        mCircle.setRadius(distance * 1000);
     }
 
 }
