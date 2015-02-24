@@ -13,7 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.uofthacks.trendy.R;
-import com.example.uofthacks.trendy.ui.ListFragment;
+import com.example.uofthacks.trendy.ui.SocialListFragment;
 
 import java.util.Locale;
 
@@ -43,11 +43,11 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         if(position == 0)
         {
-            return ListFragment.newInstance(position, mTwitterString);
+            return SocialListFragment.newInstance(position, mTwitterString);
         }
         else if(position == 1)
         {
-            return ListFragment.newInstance(position, mInstagramString);
+            return SocialListFragment.newInstance(position, mInstagramString);
         }
         else{
             // should never happen as position can only be 0 or 1
