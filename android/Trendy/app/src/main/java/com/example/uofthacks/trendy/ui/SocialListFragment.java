@@ -81,25 +81,25 @@ public class SocialListFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final int section = getArguments().getInt("section_number");
         View rootView = inflater.inflate(R.layout.list_layout, container, false);
-        ListView listView = getListView();
+        ListView listView = (ListView) rootView.findViewById(android.R.id.list);
         if (section == 0) {
             listView.setAdapter(mAdapter);
-            listView.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.setBackgroundColor(0x4099FF);
-                    v.invalidate();
-                }
-            });
+//            listView.setOnClickListener( new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    v.setBackgroundColor(0x4099FF);
+//                    v.invalidate();
+//                }
+//            });
         } else if (section == 1) {
             listView.setAdapter(mAdapter);
-            listView.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    v.setBackgroundColor(0x3F729B);
-                    v.invalidate();
-                }
-            });
+//            listView.setOnClickListener( new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    v.setBackgroundColor(0x3F729B);
+//                    v.invalidate();
+//                }
+//            });
         }
         return rootView;
     }
