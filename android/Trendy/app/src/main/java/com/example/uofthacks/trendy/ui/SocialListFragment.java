@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.uofthacks.trendy.R;
 import com.example.uofthacks.trendy.adapters.InstagramListArrayAdapter;
@@ -30,6 +29,7 @@ public class SocialListFragment extends ListFragment {
 
     private ArrayAdapter<JSONObject> mAdapter;
     private int mSectionNumber;
+    private List<JSONObject> mItems;
 
     public static SocialListFragment newInstance(int sectionNumber, String json) {
         SocialListFragment fragment = new SocialListFragment();
@@ -58,7 +58,7 @@ public class SocialListFragment extends ListFragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+        mItems = items;
 
         mSectionNumber = bundle.getInt("section_number");
         if (mSectionNumber == 0) {
@@ -108,14 +108,22 @@ public class SocialListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Bundle arguments = new Bundle();
-        if(mSectionNumber == 0) {
-            arguments.putString("text",(String) (((TextView) v.findViewById(R.id.tweet_text)).getText()));
-            arguments.putString("url", "A");
-        }
-        else if(mSectionNumber == 1) {
-            arguments.putString("text", (String) (((TextView) v.findViewById(R.id.instagram_caption)).getText()));
-            arguments.putString("url", "A");
-        }
+//        if(mSectionNumber == 0) {
+//            arguments.putString("text",(String) (((TextView) v.findViewById(R.id.tweet_text)).getText()));
+            try
+            {
+                arguments.putString("text", mItems.get(position).getString("text"));
+                arguments.putString("url", mItems.get(position).getString("image_url"));
+                arguments.putInt("section_number", mSectionNumber);
+            }catch(JSONException e)
+            {
+                e.printStackTrace();
+            }
+//        }
+//        else if(mSectionNumber == 1) {
+//            arguments.putString("text", (String) (((TextView) v.findViewById(R.id.instagram_caption)).getText()));
+//            arguments.putString("url", "A");
+//        }
         ListDetailFragment newFragment = new ListDetailFragment();
         newFragment.setArguments(arguments);
         FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
