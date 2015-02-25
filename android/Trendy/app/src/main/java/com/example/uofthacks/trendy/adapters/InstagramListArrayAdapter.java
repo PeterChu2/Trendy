@@ -60,7 +60,7 @@ public class InstagramListArrayAdapter extends ArrayAdapter<JSONObject> {
             // listview adapter support
             ImageView instagramPicture = (ImageView) row.findViewById(R.id.instagram_picture);
             Ion.with(instagramPicture)
-                    .placeholder(R.drawable.twitter_icon)
+                    .placeholder(R.drawable.instagram_icon)
                     .load(imageURL);
 
         }
