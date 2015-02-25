@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/border"
     android:orientation="horizontal">
+
     <TextView
         android:id="@+id/tweet_text"
         android:layout_width="match_parent"

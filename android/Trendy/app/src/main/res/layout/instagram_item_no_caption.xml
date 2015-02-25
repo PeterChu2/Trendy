@@ -8,9 +8,9 @@
     <ImageView
         android:id="@+id/instagram_picture"
         android:layout_width="match_parent"
+        android:layout_height="180dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:layout_height="180dp"
         android:padding="10dp"></ImageView>
 
 </LinearLayout>

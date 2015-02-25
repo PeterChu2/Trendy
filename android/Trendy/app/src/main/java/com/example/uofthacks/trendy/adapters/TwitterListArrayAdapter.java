@@ -2,7 +2,6 @@ package com.example.uofthacks.trendy.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,8 +56,7 @@ public class TwitterListArrayAdapter extends ArrayAdapter<JSONObject> {
                 Ion.with(tweetPicture)
                         .placeholder(R.drawable.twitter_icon)
                         .load(imageURL);
-            }
-            else {
+            } else {
                 row = inflater.inflate(R.layout.twitter_item_no_picture, parent, false);
             }
 

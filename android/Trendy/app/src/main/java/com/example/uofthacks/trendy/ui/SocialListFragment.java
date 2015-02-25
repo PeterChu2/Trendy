@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.example.uofthacks.trendy.R;
@@ -40,6 +41,7 @@ public class SocialListFragment extends ListFragment {
         fragment.setArguments(args);
         return fragment;
     }
+
 
     @Override
     public void onAttach(Activity activity) {
@@ -79,11 +81,17 @@ public class SocialListFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        final FrameLayout wrapper = new FrameLayout(getActivity());
+        wrapper.setLayoutParams(new FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT));
+        wrapper.setId(100);
+
         final int section = getArguments().getInt("section_number");
         View rootView = inflater.inflate(R.layout.list_layout, container, false);
         ListView listView = (ListView) rootView.findViewById(android.R.id.list);
-        if (section == 0) {
-            listView.setAdapter(mAdapter);
+//        if (section == 0) {
+//            listView.setAdapter(mAdapter);
 //            listView.setOnClickListener( new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -91,8 +99,8 @@ public class SocialListFragment extends ListFragment {
 //                    v.invalidate();
 //                }
 //            });
-        } else if (section == 1) {
-            listView.setAdapter(mAdapter);
+//        } else if (section == 1) {
+        listView.setAdapter(mAdapter);
 //            listView.setOnClickListener( new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -100,34 +108,40 @@ public class SocialListFragment extends ListFragment {
 //                    v.invalidate();
 //                }
 //            });
-        }
-        return rootView;
+//        }
+
+        wrapper.addView(listView);
+        return wrapper;
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Bundle arguments = new Bundle();
-//        if(mSectionNumber == 0) {
-//            arguments.putString("text",(String) (((TextView) v.findViewById(R.id.tweet_text)).getText()));
-            try
-            {
-                arguments.putString("text", mItems.get(position).getString("text"));
-                arguments.putString("url", mItems.get(position).getString("image_url"));
-                arguments.putInt("section_number", mSectionNumber);
-            }catch(JSONException e)
-            {
-                e.printStackTrace();
-            }
-//        }
-//        else if(mSectionNumber == 1) {
-//            arguments.putString("text", (String) (((TextView) v.findViewById(R.id.instagram_caption)).getText()));
-//            arguments.putString("url", "A");
-//        }
-        ListDetailFragment newFragment = new ListDetailFragment();
+
+        try {
+            arguments.putString("text", mItems.get(position).getString("text"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            arguments.putString("image_url", mItems.get(position).getString("image_url"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            arguments.putInt("section_number", mSectionNumber);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        getListView().setVisibility(View.GONE);
+
+        ListDetailFragment newFragment = new ListDetailFragment(getListView());
         newFragment.setArguments(arguments);
-        FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
-        transaction.replace(this.getId(), newFragment);
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.addToBackStack(null).add(100, newFragment);
+//        transaction.add( newFragment, "list item detail");
         transaction.commit();
+
     }
 }

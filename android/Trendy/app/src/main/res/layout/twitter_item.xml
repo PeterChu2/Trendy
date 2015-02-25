@@ -9,8 +9,8 @@
         android:id="@+id/tweet_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
         android:layout_gravity="center"
+        android:layout_weight="3"
         android:gravity="center"
         android:maxLines="4"
         android:scrollbars="vertical"></TextView>
@@ -19,8 +19,8 @@
         android:id="@+id/tweet_picture"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:layout_gravity="center"
+        android:layout_weight="1"
         android:contentDescription="@string/picture_description"
         android:maxHeight="400dp"
         android:padding="10dp"></ImageView>

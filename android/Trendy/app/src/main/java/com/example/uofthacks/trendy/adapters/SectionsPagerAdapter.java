@@ -30,6 +30,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
     public SectionsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
+
     public SectionsPagerAdapter(FragmentManager fm, Activity activity,
                                 String twitterString,
                                 String instagramString) {
@@ -41,15 +42,11 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if(position == 0)
-        {
+        if (position == 0) {
             return SocialListFragment.newInstance(position, mTwitterString);
-        }
-        else if(position == 1)
-        {
+        } else if (position == 1) {
             return SocialListFragment.newInstance(position, mInstagramString);
-        }
-        else{
+        } else {
             // should never happen as position can only be 0 or 1
             return null;
         }

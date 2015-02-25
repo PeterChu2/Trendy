@@ -2,7 +2,6 @@ package com.example.uofthacks.trendy.adapters;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,9 +52,7 @@ public class InstagramListArrayAdapter extends ArrayAdapter<JSONObject> {
                 row = inflater.inflate(R.layout.instagram_item, parent, false);
                 TextView instagramCaption = (TextView) row.findViewById(R.id.instagram_caption);
                 instagramCaption.setText(text);
-                instagramCaption.setMovementMethod(new ScrollingMovementMethod());
-            }
-            else {
+            } else {
                 row = inflater.inflate(R.layout.instagram_item_no_caption, parent, false);
             }
 
