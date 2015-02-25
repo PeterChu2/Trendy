@@ -28,30 +28,46 @@ public class ListDetailFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.list_detail_layout, container, false);
-        ImageView imageView = (ImageView) rootView.findViewById(R.id.image);
-        TextView textView = (TextView) rootView.findViewById(R.id.text);
-        String text = (String) getArguments().get("text");
-        int sectionNumber = getArguments().getInt("section_number");
+        View rootView;
 
+        String text = (String) getArguments().get("text");
+        String urlString = (String) getArguments().get("image_url");
+        int sectionNumber = getArguments().getInt("section_number");
+        String imageURL = null;
         try {
-            if ((getArguments().get("image_url")) != null) {
-                String imageURL = (new JSONArray((String) getArguments().get("image_url"))).getString(0);
-                if (sectionNumber == 0) {
-                    Ion.with(imageView)
-                            .placeholder(R.drawable.twitter_icon)
-                            .load(imageURL);
-                } else {
-                    Ion.with(imageView)
-                            .placeholder(R.drawable.instagram_icon)
-                            .load(imageURL);
-                }
-            }
+            imageURL = (new JSONArray(urlString)).getString(0);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        // determine type of layout base on info available
+        if (text == null) {
+            rootView = inflater.inflate(R.layout.list_detail_picture_only, container, false);
+        } else if (imageURL == null) {
+            rootView = inflater.inflate(R.layout.list_detail_text_only, container, false);
+        } else {
+            rootView = inflater.inflate(R.layout.list_detail_layout, container, false);
+        }
+
+        if (imageURL != null) {
+            ImageView imageView = (ImageView) rootView.findViewById(R.id.image);
+
+            if (sectionNumber == 0) {
+                Ion.with(imageView)
+                        .placeholder(R.drawable.twitter_icon)
+                        .load(imageURL);
+            } else {
+                Ion.with(imageView)
+                        .placeholder(R.drawable.instagram_icon)
+                        .load(imageURL);
+            }
+        }
+
+
         if (text != null) {
+            TextView textView = (TextView) rootView.findViewById(R.id.text);
             textView.setText(text);
+        } else {
         }
 
         return rootView;

@@ -90,25 +90,8 @@ public class SocialListFragment extends ListFragment {
         final int section = getArguments().getInt("section_number");
         View rootView = inflater.inflate(R.layout.list_layout, container, false);
         ListView listView = (ListView) rootView.findViewById(android.R.id.list);
-//        if (section == 0) {
-//            listView.setAdapter(mAdapter);
-//            listView.setOnClickListener( new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    v.setBackgroundColor(0x4099FF);
-//                    v.invalidate();
-//                }
-//            });
-//        } else if (section == 1) {
+
         listView.setAdapter(mAdapter);
-//            listView.setOnClickListener( new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    v.setBackgroundColor(0x3F729B);
-//                    v.invalidate();
-//                }
-//            });
-//        }
 
         wrapper.addView(listView);
         return wrapper;
@@ -129,11 +112,8 @@ public class SocialListFragment extends ListFragment {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        try {
-            arguments.putInt("section_number", mSectionNumber);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        arguments.putInt("section_number", mSectionNumber);
+
         getListView().setVisibility(View.GONE);
 
         ListDetailFragment newFragment = new ListDetailFragment(getListView());
