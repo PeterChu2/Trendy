@@ -1,7 +1,10 @@
 package com.example.uofthacks.trendy.ui;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -76,9 +79,12 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
         final View.OnClickListener onSearchButtonClickedListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (marker != null) {
+                if ( (isNetworkAvailable()) && (marker != null)) {
                     LatLng latLng = marker.getPosition();
                     new RetrievePostsTask(mActivity).execute(latLng);
+                }
+                if( (isNetworkAvailable()) == false ) {
+                    Toast.makeText(mActivity, "No internet connection found!", Toast.LENGTH_LONG);
                 }
             }
         };
@@ -230,4 +236,10 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
         super.onBackPressed();
     }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 }

@@ -28,8 +28,8 @@ Visit http://trendy-posts.herokuapp.com
 ### Screenshots
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/PeterChu2/Tweet-Offline/master/promo_pics/map.png" width="200px">
-<img src="https://raw.githubusercontent.com/PeterChu2/Tweet-Offline/master/promo_pics/twitter_list.png" width="200px"/>
-<img src="https://raw.githubusercontent.com/PeterChu2/Tweet-Offline/master/promo_pics/tinstagram_list.png" width="200px" />
-<img src="https://raw.githubusercontent.com/PeterChu2/Tweet-Offline/master/promo_pics/list_detail.png" width="200px" />
+<img src="https://raw.githubusercontent.com/PeterChu2/Trendy/master/promo_pics/mobile/map.png" width="150px">
+<img src="https://raw.githubusercontent.com/PeterChu2/Trendy/master/promo_pics/mobile/twitter_list.png" width="150px"/>
+<img src="https://raw.githubusercontent.com/PeterChu2/Trendy/master/promo_pics/mobile/instagram_list.png" width="150px" />
+<img src="https://raw.githubusercontent.com/PeterChu2/Trendy/master/promo_pics/mobile/item_detail.png" width="150px" />
 </div>
