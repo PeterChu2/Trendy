@@ -120,7 +120,6 @@ public class SocialListFragment extends ListFragment {
         newFragment.setArguments(arguments);
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.addToBackStack(null).add(100, newFragment);
-//        transaction.add( newFragment, "list item detail");
         transaction.commit();
 
     }

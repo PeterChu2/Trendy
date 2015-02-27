@@ -5,7 +5,7 @@
     <string name="title_activity_maps">Trendy</string>
     <string name="distance">Distance:</string>
     <string name="no_location_detected">No Location Detected! Ensure location is enabled in your phone settings.</string>
-    <string name="picture_description">Twitter picture</string>
+    <string name="picture_description">Full-sized Picture</string>
     <string name="twitter">Twitter</string>
     <string name="instagram">Instagram</string>
 

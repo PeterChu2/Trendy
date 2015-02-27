@@ -41,15 +41,15 @@ public class ListDetailFragment extends Fragment {
         }
 
         // determine type of layout base on info available
-        if (text == null) {
+        if ((text == null) || (text.isEmpty())) {
             rootView = inflater.inflate(R.layout.list_detail_picture_only, container, false);
-        } else if (imageURL == null) {
+        } else if ((imageURL == null) || (imageURL.isEmpty())) {
             rootView = inflater.inflate(R.layout.list_detail_text_only, container, false);
         } else {
             rootView = inflater.inflate(R.layout.list_detail_layout, container, false);
         }
 
-        if (imageURL != null) {
+        if ((imageURL != null) && (!imageURL.isEmpty())) {
             ImageView imageView = (ImageView) rootView.findViewById(R.id.image);
 
             if (sectionNumber == 0) {
@@ -64,10 +64,9 @@ public class ListDetailFragment extends Fragment {
         }
 
 
-        if (text != null) {
+        if ((text != null) && (!text.isEmpty())) {
             TextView textView = (TextView) rootView.findViewById(R.id.text);
             textView.setText(text);
-        } else {
         }
 
         return rootView;
