@@ -222,13 +222,15 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.Co
         // if there is a fragment and the back stack of this fragment is not empty,
         // then emulate 'onBackPressed' behaviour, because in default, it is not working
         FragmentManager fm = getSupportFragmentManager();
-        for (Fragment frag : fm.getFragments()) {
-            if (frag != null) {
-                if (frag.isVisible()) {
-                    FragmentManager childFm = frag.getChildFragmentManager();
-                    if (childFm.getBackStackEntryCount() > 0) {
-                        childFm.popBackStack();
-                        return;
+        if(fm.getFragments() != null) {
+            for (Fragment frag : fm.getFragments()) {
+                if (frag != null) {
+                    if (frag.isVisible()) {
+                        FragmentManager childFm = frag.getChildFragmentManager();
+                        if (childFm.getBackStackEntryCount() > 0) {
+                            childFm.popBackStack();
+                            return;
+                        }
                     }
                 }
             }
