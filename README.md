@@ -25,6 +25,8 @@ Visit http://trendy-posts.herokuapp.com
 
 ## Get the mobile app
 
+The mobile app is available in the play store at https://play.google.com/store/apps/details?id=com.forchuapps.uofthacks.trendy
+
 ### Screenshots
 
 <div align="center">
