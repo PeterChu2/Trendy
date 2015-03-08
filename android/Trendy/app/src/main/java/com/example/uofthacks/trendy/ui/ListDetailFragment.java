@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.support.v4.app.ListFragment;
 
 import com.example.uofthacks.trendy.R;
 import com.koushikdutta.ion.Ion;
@@ -21,10 +22,6 @@ import org.json.JSONException;
 public class ListDetailFragment extends Fragment {
 
     private View mView;
-
-    public ListDetailFragment(View view) {
-        mView = view;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,7 +71,8 @@ public class ListDetailFragment extends Fragment {
 
     @Override
     public void onDetach() {
+        // make listview visible again in parent fragment
+        ((ListFragment) (getParentFragment())).getListView().setVisibility(View.VISIBLE);
         super.onDetach();
-        mView.setVisibility(View.VISIBLE);
     }
 }

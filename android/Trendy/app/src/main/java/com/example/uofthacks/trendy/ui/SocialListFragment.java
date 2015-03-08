@@ -85,9 +85,9 @@ public class SocialListFragment extends ListFragment {
         wrapper.setLayoutParams(new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT));
+        // set own ID so it can be referenced later
         wrapper.setId(100);
 
-        final int section = getArguments().getInt("section_number");
         View rootView = inflater.inflate(R.layout.list_layout, container, false);
         ListView listView = (ListView) rootView.findViewById(android.R.id.list);
 
@@ -116,7 +116,7 @@ public class SocialListFragment extends ListFragment {
 
         getListView().setVisibility(View.GONE);
 
-        ListDetailFragment newFragment = new ListDetailFragment(getListView());
+        ListDetailFragment newFragment = new ListDetailFragment();
         newFragment.setArguments(arguments);
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.addToBackStack(null).add(100, newFragment);
