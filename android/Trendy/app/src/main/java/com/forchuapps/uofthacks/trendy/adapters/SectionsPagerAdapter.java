@@ -1,4 +1,4 @@
-package com.example.uofthacks.trendy.adapters;
+package com.forchuapps.uofthacks.trendy.adapters;
 
 /**
  * Created by peter on 22/02/15.
@@ -12,8 +12,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.uofthacks.trendy.R;
-import com.example.uofthacks.trendy.ui.SocialListFragment;
+import com.forchuapps.uofthacks.trendy.R;
+import com.forchuapps.uofthacks.trendy.ui.SocialListFragment;
 
 import java.util.Locale;
 

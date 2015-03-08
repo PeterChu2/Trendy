@@ -1,4 +1,4 @@
-package com.example.uofthacks.trendy.ui;
+package com.forchuapps.uofthacks.trendy.ui;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.example.uofthacks.trendy.R;
-import com.example.uofthacks.trendy.adapters.SectionsPagerAdapter;
+import com.forchuapps.uofthacks.trendy.R;
+import com.forchuapps.uofthacks.trendy.adapters.SectionsPagerAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;

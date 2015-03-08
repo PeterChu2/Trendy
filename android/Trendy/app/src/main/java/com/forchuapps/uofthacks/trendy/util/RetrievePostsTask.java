@@ -1,4 +1,4 @@
-package com.example.uofthacks.trendy.util;
+package com.forchuapps.uofthacks.trendy.util;
 
 
 import android.os.AsyncTask;
@@ -8,8 +8,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 
-import com.example.uofthacks.trendy.R;
-import com.example.uofthacks.trendy.ui.DetailFragment;
+import com.forchuapps.uofthacks.trendy.R;
+import com.forchuapps.uofthacks.trendy.ui.DetailFragment;
 import com.google.android.gms.maps.model.LatLng;
 
 import org.apache.http.HttpEntity;

@@ -1,4 +1,4 @@
-package com.example.uofthacks.trendy.adapters;
+package com.forchuapps.uofthacks.trendy.adapters;
 
 import android.app.Activity;
 import android.content.Context;
@@ -9,7 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.uofthacks.trendy.R;
+import com.forchuapps.uofthacks.trendy.R;
 import com.koushikdutta.ion.Ion;
 
 import org.json.JSONException;

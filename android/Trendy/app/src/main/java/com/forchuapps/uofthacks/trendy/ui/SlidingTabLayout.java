@@ -1,4 +1,4 @@
-package com.example.uofthacks.trendy.ui;
+package com.forchuapps.uofthacks.trendy.ui;
 
 /**
  * Created by peter on 22/02/15.

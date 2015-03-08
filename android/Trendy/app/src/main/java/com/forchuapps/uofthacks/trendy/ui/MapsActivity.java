@@ -1,4 +1,4 @@
-package com.example.uofthacks.trendy.ui;
+package com.forchuapps.uofthacks.trendy.ui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,8 +15,8 @@ import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
-import com.example.uofthacks.trendy.R;
-import com.example.uofthacks.trendy.util.RetrievePostsTask;
+import com.forchuapps.uofthacks.trendy.R;
+import com.forchuapps.uofthacks.trendy.util.RetrievePostsTask;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationServices;

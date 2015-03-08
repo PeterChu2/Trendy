@@ -1,4 +1,4 @@
-package com.example.uofthacks.trendy.ui;
+package com.forchuapps.uofthacks.trendy.ui;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -13,9 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
-import com.example.uofthacks.trendy.R;
-import com.example.uofthacks.trendy.adapters.InstagramListArrayAdapter;
-import com.example.uofthacks.trendy.adapters.TwitterListArrayAdapter;
+import com.forchuapps.uofthacks.trendy.R;
+import com.forchuapps.uofthacks.trendy.adapters.InstagramListArrayAdapter;
+import com.forchuapps.uofthacks.trendy.adapters.TwitterListArrayAdapter;
 
 import org.json.JSONException;
 import org.json.JSONObject;

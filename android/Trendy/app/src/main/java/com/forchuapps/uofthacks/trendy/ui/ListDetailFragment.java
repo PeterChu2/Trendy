@@ -1,4 +1,4 @@
-package com.example.uofthacks.trendy.ui;
+package com.forchuapps.uofthacks.trendy.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v4.app.ListFragment;
 
-import com.example.uofthacks.trendy.R;
+import com.forchuapps.uofthacks.trendy.R;
 import com.koushikdutta.ion.Ion;
 
 import org.json.JSONArray;
