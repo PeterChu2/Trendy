@@ -1,4 +1,4 @@
-# Trendy
+# ![logo](https://raw.githubusercontent.com/PeterChu2/Trendy/master/promo_pics/trendy_logo.png) Trendy
 
 Trendy is an application that allows users to search nearby areas for trending posts and hashtags.
 
@@ -28,7 +28,7 @@ Visit http://trendy-posts.herokuapp.com
 ### Screenshots
 
 <div align="center">
-<img src="https://raw.githubusercontent.com/PeterChu2/Trendy/master/promo_pics/mobile/map.png" width="150px">
+<img src="https://raw.githubusercontent.com/PeterChu2/Trendy/master/promo_pics/mobile/map.png" width="150px"/>
 <img src="https://raw.githubusercontent.com/PeterChu2/Trendy/master/promo_pics/mobile/twitter_list.png" width="150px"/>
 <img src="https://raw.githubusercontent.com/PeterChu2/Trendy/master/promo_pics/mobile/instagram_list.png" width="150px" />
 <img src="https://raw.githubusercontent.com/PeterChu2/Trendy/master/promo_pics/mobile/item_detail.png" width="150px" />
