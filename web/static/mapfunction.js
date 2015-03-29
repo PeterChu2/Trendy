@@ -22,7 +22,7 @@ function initialize() {
             var infowindow = new google.maps.InfoWindow({
                     map: map,
                     position: pos,
-                    content: '<input type="number" value="5" min="1" onkeypress="if(event.keyCode==13) postServer(value);">'
+                    content: 'Search for posts within: <input type="number" value="5" min="1" onkeypress="if(event.keyCode==13) postServer(value);"> km'
                 });
                 infowindow.open(map, marker);
 
@@ -38,7 +38,7 @@ function initialize() {
                 infowindow = new google.maps.InfoWindow({
                     map: map,
                     position: pos,
-                    content: '<input type="number" value="5" min="1" onkeypress="if(event.keyCode==13) postServer(value);">'
+                    content: 'Search for posts within: <input type="number" value="5" min="1" onkeypress="if(event.keyCode==13) postServer(value);"> km'
                 });
                 infowindow.open(map, marker);
             });
