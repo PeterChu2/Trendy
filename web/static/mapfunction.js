@@ -63,7 +63,7 @@ function postServer(val){
     {
         url = "http://127.0.0.1:5000/nearby"
     }
-	jQuery.post(url, {lat: pos.A, long: pos.F, value: val}, function(data){
+	jQuery.post(url, {lat: pos.lat(), long: pos.lng(), value: val}, function(data){
             sessionStorage.setItem("data", JSON.stringify(data));
 	    window.open("/nearby/trending");
 	})
